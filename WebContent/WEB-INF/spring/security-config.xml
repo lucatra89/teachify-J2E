@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<security:global-method-security pre-post-annotations="enabled" />
+
+	<security:http auto-config="true" use-expressions="true"  authentication-manager-ref="manager">
+		<security:access-denied-handler error-page="/accessdenied" />
+	    
+	    <security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/login" access="!isAuthenticated()"/>
+		<security:intercept-url pattern="/register" access="!isAuthenticated()"/>
+		<security:intercept-url pattern="/dashboard/tutor" access="hasRole('tutor')"/>
+		<security:intercept-url pattern="/dashboard/student" access="isAuthenticated()"/>
+				<security:intercept-url pattern="/profile" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/backend/*" access="hasRole('admin')"/>
+		<security:intercept-url pattern="/backend/" access="hasRole('admin')"/>
+
+		<security:intercept-url pattern="/api/rest/hours" method="POST" access="hasRole('admin')"/>
+		<security:intercept-url pattern="/api/rest/hours" method="DELETE" access="hasRole('admin')"/>
+		
+		<security:intercept-url pattern="/api/rest/prices" method="POST" access="hasRole('admin')"/>
+		<security:intercept-url pattern="/api/rest/prices" method="DELETE" access="hasRole('admin')"/>
+		
+		<security:intercept-url pattern="/api/rest/typesofeducation" method="POST" access="hasRole('admin')"/>
+		<security:intercept-url pattern="/api/rest/typesofeducation" method="PUT" access="hasRole('admin')"/>
+		<security:intercept-url pattern="/api/rest/typesofeducation" method="DELETE" access="hasRole('admin')"/>
+		
+		<security:intercept-url pattern="/api/rest/subjects" method="POST" access="hasRole('admin')"/>
+		<security:intercept-url pattern="/api/rest/subjects" method="PUT" access="hasRole('admin')"/>
+		<security:intercept-url pattern="/api/rest/subjects" method="DELETE" access="hasRole('admin')"/>
+																								
+		<security:intercept-url pattern="/api/rest/admins" method="GET" access="hasRole('admin')"/>
+		<security:intercept-url pattern="/api/rest/admins" method="POST" access="hasRole('admin')"/>
+		<security:intercept-url pattern="/api/rest/admins" method="DELETE" access="hasRole('admin')"/>
+		
+		<security:intercept-url pattern="/api/rest/requests/*" method="PUT" access="hasRole('tutor')"/>
+		
+		<security:intercept-url pattern="/api/rest/tutors/*" method="GET" access="permitAll"/>
+		<security:intercept-url pattern="/api/rest/tutors/*/description" method="PUT" access="hasRole('tutor')"/>
+		<security:intercept-url pattern="/api/rest/tutors/*/location" method="PUT" access="hasRole('tutor')"/>
+		<security:intercept-url pattern="/api/rest/tutors/*/price" method="PUT" access="hasRole('tutor')"/>
+																				
+		<security:intercept-url pattern="/api/rest/tutors/*/lessons" method="POST" access="hasRole('tutor')"/>
+		<security:intercept-url pattern="/api/rest/tutors/*/lessons/*" method="DELETE" access="hasRole('tutor')"/>
+		
+		<security:intercept-url pattern="/api/rest/tutors/*/availabilities" method="POST" access="hasRole('tutor')"/>
+		<security:intercept-url pattern="/api/rest/tutors/*/availabilities/*" method="DELETE" access="hasRole('tutor')"/>
+				
+		
+		<security:form-login login-page="/login" 
+							 authentication-failure-url="/login" 
+							 default-target-url="/"
+							 always-use-default-target="true"/>
+		
+	</security:http>
+
+    <security:authentication-manager id="manager">
+		<security:authentication-provider user-service-ref="myUserDetailsService"/>
+	</security:authentication-manager>
+	
+	<bean id="myUserDetailsService" class="it.univaq.disim.mwt.teachify.common.spring.UserDetailsServiceImpl"/>
+	<bean class="it.univaq.disim.mwt.teachify.common.spring.Utility"/>
+</beans>
