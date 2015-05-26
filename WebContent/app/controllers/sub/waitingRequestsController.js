@@ -20,11 +20,13 @@ define(function ( require ) {
 		
 				
 		function init() {
+			console.log("Sending...");
 			requestQFactory.findWaiting(tutor)
 			.then(function(data) {
 				_.extend($scope, data);
 				requests = data.requests;
 				utilities.refreshScope();
+				console.log("Response processed...");
 			});
 		}
 		

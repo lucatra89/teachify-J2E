@@ -359,7 +359,7 @@ public class JDBCTutorService implements TutorService {
 	}
 
 	@Override
-	public List<Request> findRequestsByTutor(Tutor tutor, StatusRequest status) throws BusinessException {
+	public List<Request> findWaitingRequestsByTutor(Tutor tutor) throws BusinessException {
 		List<Request> list = new ArrayList<Request>();
 		
 		
@@ -383,6 +383,14 @@ public class JDBCTutorService implements TutorService {
 		b.setDescription("voccapè");
 		c.setDescription("ndund");
 		
+		a.setStatus(StatusRequest.Waiting);
+		b.setStatus(StatusRequest.Waiting);
+		c.setStatus(StatusRequest.Waiting);
+		
+		a.setCreatedAt(new Date());
+		b.setCreatedAt(new Date());
+		c.setCreatedAt(new Date());
+
 		list.add(a);
 		list.add(b);
 		list.add(c);

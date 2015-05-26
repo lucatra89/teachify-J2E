@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+    name="Teachify"
+    targetNamespace="http://www.univaq.t/mwt/soa/teachify"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://www.univaq.t/mwt/soa/teachify"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd1="http://www.univaq.t/mwt/soa/Teachify.xsd1">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Progetto SOA Master 2015</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema
+            targetNamespace="http://www.univaq.t/mwt/soa/Teachify.xsd1"
+            xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xsd1="http://www.univaq.t/mwt/soa/Teachify.xsd1">
+            <xsd:complexType name="TContact">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="telephone" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="skype" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="email" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TLocation">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="latitude" type="xsd:float"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="longitude" type="xsd:float"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:simpleType name="TDay">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Monday"/>
+                    <xsd:enumeration value="Tuesday"/>
+                    <xsd:enumeration value="Wednesday"/>
+                    <xsd:enumeration value="Thursday"/>
+                    <xsd:enumeration value="Friday"/>
+                    <xsd:enumeration value="Saturday"/>
+                    <xsd:enumeration value="Sunday"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:complexType name="TLesson">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="id" type="xsd:long"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="subject" type="xsd1:TSubject"/>
+                    <xsd:element
+                        maxOccurs="1"
+                        minOccurs="0"
+                        name="typeOfEducation"
+                        type="xsd1:TTypeOfEducation"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="THour">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="value" type="xsd:int"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TPrice">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="value" type="xsd:int"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TSubject">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TTypeOfEducation">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TAvailability">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="from" type="xsd1:THour"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="to" type="xsd1:THour"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="day" type="xsd1:TDay"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TRequestTutors">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="latitude" type="xsd:float"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="longitude" type="xsd:float"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="subjectId" type="xsd:long"/>
+                    <xsd:element
+                        maxOccurs="1"
+                        minOccurs="0"
+                        name="typeOfEducationId"
+                        type="xsd:long"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TError">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:int"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="message" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="EError" type="xsd1:TError"/>
+            <xsd:complexType name="TUser">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="surname" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TTutorInfo">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="id" type="xsd:long"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="distance" type="xsd:long"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TRequest">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="user" type="xsd1:TUser"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="tutor" type="xsd1:TTutor"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="description" type="xsd:string"/>
+                    <xsd:element
+                        maxOccurs="1"
+                        minOccurs="0"
+                        name="status"
+                        type="xsd1:TStatusRequest"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="createdAt" type="xsd:date"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:simpleType name="TStatusRequest">
+                <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Accepted"/>
+                    <xsd:enumeration value="Rejected"/>
+                    <xsd:enumeration value="Waiting"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:complexType name="TTutorInfoList">
+                <xsd:sequence>
+                    <xsd:element
+                        maxOccurs="unbounded"
+                        minOccurs="1"
+                        name="tutors"
+                        type="xsd1:TTutorInfo"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TRequestList">
+                <xsd:sequence>
+                    <xsd:element
+                        maxOccurs="unbounded"
+                        minOccurs="1"
+                        name="requests"
+                        type="xsd1:TRequest"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TTutor">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="name" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="surname" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="rating" type="xsd:float"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="location" type="xsd1:TLocation"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="price" type="xsd1:TPrice"/>
+                    <xsd:element
+                        maxOccurs="unbounded"
+                        minOccurs="1"
+                        name="availabilities"
+                        type="xsd1:TAvailability"/>
+                    <xsd:element
+                        maxOccurs="unbounded"
+                        minOccurs="1"
+                        name="lessons"
+                        type="xsd1:TLesson"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="contact" type="xsd1:TContact"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="UserAndTutor">
+        <wsdl:part name="user" type="xsd1:TUser"/>
+        <wsdl:part name="tutor" type="xsd1:TTutor"/>
+    </wsdl:message>
+    <wsdl:message name="Error">
+        <wsdl:part element="xsd1:EError" name="error"/>
+    </wsdl:message>
+    <wsdl:message name="Location">
+        <wsdl:part name="location" type="xsd1:TLocation"/>
+    </wsdl:message>
+    <wsdl:message name="Request">
+        <wsdl:part name="request" type="xsd1:TRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RequestList">
+        <wsdl:part name="requests" type="xsd1:TRequestList"/>
+    </wsdl:message>
+    <wsdl:message name="RequestTutors">
+        <wsdl:part name="requestTutors" type="xsd1:TRequestTutors"/>
+    </wsdl:message>
+    <wsdl:message name="Void">   </wsdl:message>
+    <wsdl:message name="Contact">
+        <wsdl:part name="contact" type="xsd1:TContact"/>
+    </wsdl:message>
+    <wsdl:message name="Tutor">
+        <wsdl:part name="tutor" type="xsd1:TTutor"/>
+    </wsdl:message>
+    <wsdl:message name="TutorInfoList">
+        <wsdl:part name="tutorInfoList" type="xsd1:TTutorInfoList"/>
+    </wsdl:message>
+    <wsdl:message name="User">
+        <wsdl:part name="user" type="xsd1:TUser"/>
+    </wsdl:message>
+    <wsdl:message name="Description">
+        <wsdl:part name="description" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="StatusRequest">
+        <wsdl:part name="status" type="xsd1:TStatusRequest"/>
+    </wsdl:message>
+    <wsdl:message name="Price">
+        <wsdl:part name="price" type="xsd1:TPrice"/>
+    </wsdl:message>
+    <wsdl:portType name="TeachifyInterface">
+        <wsdl:operation name="createTutor">
+            <wsdl:input message="tns:Tutor"/>
+            <wsdl:output message="tns:Void"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateTutorDescription">
+            <wsdl:input message="tns:Description"/>
+            <wsdl:output message="tns:Void"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateTutorLocation">
+            <wsdl:input message="tns:Location"/>
+            <wsdl:output message="tns:Void"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateTutorPrice">
+            <wsdl:input message="tns:Price"/>
+            <wsdl:output message="tns:Void"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateTutorContact">
+            <wsdl:input message="tns:Contact"/>
+            <wsdl:output message="tns:Void"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchTutors">
+            <wsdl:input message="tns:RequestTutors"/>
+            <wsdl:output message="tns:TutorInfoList"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="createRequest">
+            <wsdl:input message="tns:Request"/>
+            <wsdl:output message="tns:Void"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateStatusRequest">
+            <wsdl:input message="tns:StatusRequest"/>
+            <wsdl:output message="tns:Void"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="findWaitingRequestsByTutor">
+            <wsdl:input message="tns:Tutor"/>
+            <wsdl:output message="tns:RequestList"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="findRequestsByUser">
+            <wsdl:input message="tns:User"/>
+            <wsdl:output message="tns:RequestList"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="statusOfRequest">
+            <wsdl:input message="tns:UserAndTutor"/>
+            <wsdl:output message="tns:StatusRequest"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="TeachifySOAP" type="tns:TeachifyInterface">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createTutor">
+            <soap:operation soapAction="TeachifyInterface#createTutor"/>
+            <wsdl:input>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="tutor"
+                    use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateTutorDescription">
+            <soap:operation soapAction="TeachifyInterface#updateTutorDescription"/>
+            <wsdl:input>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="description"
+                    use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateTutorLocation">
+            <soap:operation soapAction="TeachifyInterface#updateTutorLocation"/>
+            <wsdl:input>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="location"
+                    use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateTutorPrice">
+            <soap:operation soapAction="TeachifyInterface#updateTutorPrice"/>
+            <wsdl:input>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="price"
+                    use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateTutorContact">
+            <soap:operation soapAction="TeachifyInterface#updateTutorContact"/>
+            <wsdl:input>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="contact"
+                    use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchTutors">
+            <soap:operation soapAction="TeachifyInterface#searchTutors"/>
+            <wsdl:input>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="requestTutors"
+                    use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="tutorInfoList"
+                    use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createRequest">
+            <soap:operation soapAction="TeachifyInterface#createRequest"/>
+            <wsdl:input>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="request"
+                    use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateStatusRequest">
+            <soap:operation soapAction="TeachifyInterface#updateStatusRequest"/>
+            <wsdl:input>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="status"
+                    use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="findWaitingRequestsByTutor">
+            <soap:operation soapAction="TeachifyInterface#findWaitingRequestsByTutor"/>
+            <wsdl:input>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="tutor"
+                    use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    parts="requests"
+                    use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="findRequestsByUser">
+            <soap:operation soapAction="findRequestsByUser"/>
+            <wsdl:input>
+                <soap:body
+                    namespace="http://www.univaq.it/mwt/soa/teachify/data"
+                    use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="http://www.univaq.it/mwt/soa/data" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="statusOfRequest">
+            <soap:operation soapAction="TeachifyInterface#statusOfRequest"/>
+            <wsdl:input>
+                <soap:body namespace="http://www.univaq.it/mwt/soa/teachify/data" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body namespace="http://www.univaq.it/mwt/soa/teachify/data" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="TeachifyError">
+                <soap:fault name="TeachifyError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Teachify">
+        <wsdl:port binding="tns:TeachifySOAP" name="TeachifySOAPPort">
+            <soap:address location="http://localhost:8080/teachify/webservice"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

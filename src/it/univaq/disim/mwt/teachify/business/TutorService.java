@@ -19,7 +19,9 @@ public interface TutorService {
 	public void updateTutorLocation(Tutor tutor) throws BusinessException;
 
 	public void upgradeToTutor(Tutor tutor) throws BusinessException;
-
+	
+	public void updateTutorPrice(Tutor tutor) throws BusinessException;
+	
 	public List<Tutor> searchTutors(RequestTutors request) throws BusinessException;
 
 	public Tutor findTutorByPk(long id) throws BusinessException;
@@ -32,13 +34,12 @@ public interface TutorService {
 
 	public void updateStatusRequest(Request request) throws BusinessException;
 
-	public List<Request> findRequestsByTutor(Tutor tutor, StatusRequest status) throws BusinessException;
+	public List<Request> findWaitingRequestsByTutor(Tutor tutor) throws BusinessException;
 
 	public List<Request> findRequestsByUser(User user) throws BusinessException;
 
 	public StatusRequest statusOfRequest(User user, Tutor tutor) throws BusinessException;
 
-	public void updateTutorPrice(Tutor tutor) throws BusinessException;
 
 	public void addLesson(Lesson lesson) throws BusinessException;
 

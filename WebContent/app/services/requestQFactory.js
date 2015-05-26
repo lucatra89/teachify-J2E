@@ -53,11 +53,9 @@ define(function (require) {
 						$.ajax({
 							url :url + '?tutor=' + tutor.id + "&status=Waiting",
 							type: 'GET',
-							dataType: 'json', 
-							contentType: 'application/json',
-							mimeType: 'application/json',
 						})
 						.done(function(requests) {
+							console.log("Response received...");
 							resolve({requests : requests});
 						});
 					});

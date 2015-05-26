@@ -45,11 +45,14 @@ public class RequestsController {
 		return service.findRequestsByUser(user);
 	}
     
-	@RequestMapping(method=RequestMethod.GET, params={"tutor", "status"},  produces= MediaType.APPLICATION_JSON_VALUE)
-	public List<Request> findTutorWaitingRequests(@RequestParam("tutor") Long tutorId ,  @RequestParam("status") StatusRequest statusRequest) {
+	@RequestMapping(method=RequestMethod.GET, params={"tutor"},  produces= MediaType.APPLICATION_JSON_VALUE)
+	public List<Request> findTutorWaitingRequests(@RequestParam("tutor") Long tutorId ) {
+			logger.info("Request received...");
 			Tutor tutor = new Tutor();
 			tutor.setId(tutorId);
-			return service.findRequestsByTutor(tutor, statusRequest);
+			List<Request> list = service.findWaitingRequestsByTutor(tutor);
+			logger.info("Sending response...");
+			return list;
 	}
 	
 	

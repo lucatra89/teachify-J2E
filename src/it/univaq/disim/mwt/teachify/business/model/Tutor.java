@@ -24,10 +24,9 @@ public class Tutor extends User implements java.io.Serializable {
 	
 	private long distance;
 	
-	@JsonIgnore
-	private Set<Feedback> feedbacks;
+	private Set<Feedback> feedbacks;///-----
 	
-	private Set<Request> requests;
+	private Set<Request> requests;///-----
 
 	
 	public Location getLocation() {
