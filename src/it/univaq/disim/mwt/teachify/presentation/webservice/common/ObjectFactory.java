@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the t.univaq.mwt.soa.teachify package. 
+ * generated in the it.univaq.mwt.soa.teachify package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -24,10 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _EError_QNAME = new QName("http://www.univaq.t/mwt/soa/Teachify.xsd1", "EError");
+    private final static QName _EError_QNAME = new QName("http://www.univaq.it/mwt/soa/Teachify.xsd1", "EError");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: t.univaq.mwt.soa.teachify
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: it.univaq.mwt.soa.teachify
      * 
      */
     public ObjectFactory() {
@@ -165,7 +165,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link TError }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.univaq.t/mwt/soa/Teachify.xsd1", name = "EError")
+    @XmlElementDecl(namespace = "http://www.univaq.it/mwt/soa/Teachify.xsd1", name = "EError")
     public JAXBElement<TError> createEError(TError value) {
         return new JAXBElement<TError>(_EError_QNAME, TError.class, null, value);
     }

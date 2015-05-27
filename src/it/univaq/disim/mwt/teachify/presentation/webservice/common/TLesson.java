@@ -18,8 +18,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="subject" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TSubject"/>
- *         &lt;element name="typeOfEducation" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TTypeOfEducation" minOccurs="0"/>
+ *         &lt;element name="subject" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TSubject"/>
+ *         &lt;element name="typeOfEducation" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TTypeOfEducation" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

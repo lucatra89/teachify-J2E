@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="requests" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TRequest" maxOccurs="unbounded"/>
+ *         &lt;element name="requests" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TRequest" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

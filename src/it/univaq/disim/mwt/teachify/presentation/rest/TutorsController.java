@@ -7,6 +7,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import it.univaq.disim.mwt.teachify.business.BusinessException;
+import it.univaq.disim.mwt.teachify.business.RequestTutors;
+import it.univaq.disim.mwt.teachify.business.TutorInfo;
 import it.univaq.disim.mwt.teachify.business.TutorService;
 import it.univaq.disim.mwt.teachify.business.AuthException;
 import it.univaq.disim.mwt.teachify.business.model.Availability;
@@ -16,12 +18,11 @@ import it.univaq.disim.mwt.teachify.business.model.Lesson;
 import it.univaq.disim.mwt.teachify.business.model.Location;
 import it.univaq.disim.mwt.teachify.business.model.Price;
 import it.univaq.disim.mwt.teachify.business.model.Request;
-import it.univaq.disim.mwt.teachify.business.model.RequestTutors;
 import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.business.model.User;
 import it.univaq.disim.mwt.teachify.common.spring.Utility;
 import it.univaq.disim.mwt.teachify.presentation.VerifyUser;
-import it.univaq.disim.mwt.teachify.presentation.rest.model.TutorInfo;
+import it.univaq.disim.mwt.teachify.presentation.rest.model.TutorInfoResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,13 +49,13 @@ public class TutorsController {
 	private static Logger logger = Logger.getLogger(TutorsController.class);
 	
 	
-	private List<TutorInfo> findTutorsImpl(String uriRoot , RequestTutors request) {
+	private List<TutorInfoResponse> findTutorsImpl(String uriRoot , RequestTutors request) {
 		String uri = null;
-		List<TutorInfo> infos = new ArrayList<TutorInfo>();
+		List<TutorInfoResponse> infos = new ArrayList<TutorInfoResponse>();
 		
-		for( Tutor tutor : service.searchTutors(request)){
-			uri = uriRoot + tutor.getId();
-			infos.add(new TutorInfo(uri, tutor.getDistance()));
+		for( TutorInfo tutorInfo : service.searchTutors(request)){
+			uri = uriRoot + tutorInfo.getId();
+			infos.add(new TutorInfoResponse(uri, tutorInfo.getDistance()));
 		}
 
 		return infos;
@@ -117,7 +118,7 @@ public class TutorsController {
 
 	
 	@RequestMapping( value="/search" ,  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<TutorInfo> findTutors(RequestEntity<RequestTutors>   requestEntity) {
+	public List<TutorInfoResponse> findTutors(RequestEntity<RequestTutors>   requestEntity) {
 		RequestTutors request = requestEntity.getBody();
 		String uriRoot =requestEntity.getUrl().toString().replaceAll("search", "");	
 

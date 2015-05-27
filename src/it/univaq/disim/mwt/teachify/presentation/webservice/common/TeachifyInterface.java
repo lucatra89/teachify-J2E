@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "TeachifyInterface", targetNamespace = "http://www.univaq.t/mwt/soa/teachify")
+@WebService(name = "TeachifyInterface", targetNamespace = "http://www.univaq.it/mwt/soa/teachify")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
     ObjectFactory.class
@@ -87,7 +87,7 @@ public interface TeachifyInterface {
      * 
      * @param requestTutors
      * @return
-     *     returns t.univaq.mwt.soa.teachify.TTutorInfoList
+     *     returns it.univaq.mwt.soa.teachify.TTutorInfoList
      * @throws Error
      */
     @WebMethod(action = "TeachifyInterface#searchTutors")
@@ -126,7 +126,7 @@ public interface TeachifyInterface {
      * 
      * @param tutor
      * @return
-     *     returns t.univaq.mwt.soa.teachify.TRequestList
+     *     returns it.univaq.mwt.soa.teachify.TRequestList
      * @throws Error
      */
     @WebMethod(action = "TeachifyInterface#findWaitingRequestsByTutor")
@@ -141,10 +141,10 @@ public interface TeachifyInterface {
      * 
      * @param user
      * @return
-     *     returns t.univaq.mwt.soa.teachify.TRequestList
+     *     returns it.univaq.mwt.soa.teachify.TRequestList
      * @throws Error
      */
-    @WebMethod(action = "findRequestsByUser")
+    @WebMethod(action = "TeachifyInterface#findRequestsByUser")
     @WebResult(name = "requests", partName = "requests")
     public TRequestList findRequestsByUser(
         @WebParam(name = "user", partName = "user")
@@ -157,7 +157,7 @@ public interface TeachifyInterface {
      * @param user
      * @param tutor
      * @return
-     *     returns t.univaq.mwt.soa.teachify.TStatusRequest
+     *     returns it.univaq.mwt.soa.teachify.TStatusRequest
      * @throws Error
      */
     @WebMethod(action = "TeachifyInterface#statusOfRequest")
@@ -167,6 +167,21 @@ public interface TeachifyInterface {
         TUser user,
         @WebParam(name = "tutor", partName = "tutor")
         TTutor tutor)
+        throws Error
+    ;
+
+    /**
+     * 
+     * @param id
+     * @return
+     *     returns it.univaq.mwt.soa.teachify.TTutor
+     * @throws Error
+     */
+    @WebMethod(action = "TeachifyInterface#findTutorByPK")
+    @WebResult(name = "tutor", partName = "tutor")
+    public TTutor findTutorByPK(
+        @WebParam(name = "id", partName = "id")
+        long id)
         throws Error
     ;
 

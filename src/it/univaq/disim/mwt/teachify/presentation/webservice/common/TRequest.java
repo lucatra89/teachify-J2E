@@ -20,10 +20,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="user" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TUser"/>
- *         &lt;element name="tutor" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TTutor"/>
+ *         &lt;element name="user" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TUser"/>
+ *         &lt;element name="tutor" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TTutor"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="status" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TStatusRequest" minOccurs="0"/>
+ *         &lt;element name="status" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TStatusRequest" minOccurs="0"/>
  *         &lt;element name="createdAt" type="{http://www.w3.org/2001/XMLSchema}date" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>

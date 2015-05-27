@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "EError", targetNamespace = "http://www.univaq.t/mwt/soa/Teachify.xsd1")
+@WebFault(name = "EError", targetNamespace = "http://www.univaq.it/mwt/soa/Teachify.xsd1")
 public class Error
     extends Exception
 {
@@ -45,7 +45,7 @@ public class Error
     /**
      * 
      * @return
-     *     returns fault bean: t.univaq.mwt.soa.teachify.TError
+     *     returns fault bean: it.univaq.mwt.soa.teachify.TError
      */
     public TError getFaultInfo() {
         return faultInfo;

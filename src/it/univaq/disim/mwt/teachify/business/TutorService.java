@@ -6,7 +6,6 @@ import it.univaq.disim.mwt.teachify.business.model.Availability;
 import it.univaq.disim.mwt.teachify.business.model.Feedback;
 import it.univaq.disim.mwt.teachify.business.model.Lesson;
 import it.univaq.disim.mwt.teachify.business.model.Request;
-import it.univaq.disim.mwt.teachify.business.model.RequestTutors;
 import it.univaq.disim.mwt.teachify.business.model.StatusRequest;
 import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.business.model.User;
@@ -22,7 +21,7 @@ public interface TutorService {
 	
 	public void updateTutorPrice(Tutor tutor) throws BusinessException;
 	
-	public List<Tutor> searchTutors(RequestTutors request) throws BusinessException;
+	public List<TutorInfo> searchTutors(RequestTutors request) throws BusinessException;
 
 	public Tutor findTutorByPk(long id) throws BusinessException;
 

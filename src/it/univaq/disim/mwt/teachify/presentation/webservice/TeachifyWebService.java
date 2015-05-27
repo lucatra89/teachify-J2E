@@ -5,23 +5,10 @@
  */
 package it.univaq.disim.mwt.teachify.presentation.webservice;
 
-import java.util.List;
-
+import it.univaq.disim.mwt.teachify.business.BusinessException;
 import it.univaq.disim.mwt.teachify.business.TutorService;
-import it.univaq.disim.mwt.teachify.business.impl.JDBCTutorService;
-import it.univaq.disim.mwt.teachify.business.model.Request;
-import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.Error;
-import it.univaq.disim.mwt.teachify.presentation.webservice.common.TContact;
-import it.univaq.disim.mwt.teachify.presentation.webservice.common.TLocation;
-import it.univaq.disim.mwt.teachify.presentation.webservice.common.TPrice;
-import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequest;
-import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequestList;
-import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequestTutors;
-import it.univaq.disim.mwt.teachify.presentation.webservice.common.TStatusRequest;
-import it.univaq.disim.mwt.teachify.presentation.webservice.common.TTutor;
-import it.univaq.disim.mwt.teachify.presentation.webservice.common.TTutorInfoList;
-import it.univaq.disim.mwt.teachify.presentation.webservice.common.TUser;
+import it.univaq.disim.mwt.teachify.presentation.webservice.common.TError;
 import it.univaq.disim.mwt.teachify.presentation.webservice.util.Converter;
 
 import javax.jws.WebService;
@@ -29,18 +16,24 @@ import javax.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import com.sun.xml.rpc.processor.modeler.j2ee.xml.serviceEndpointInterfaceMappingType;
-
 /**
  *
  * @author lucatraini
  */
-@WebService(serviceName = "Teachify", portName = "TeachifySOAPPort", endpointInterface = "it.univaq.disim.mwt.teachify.presentation.webservice.common.TeachifyInterface", targetNamespace = "http://www.univaq.t/mwt/soa/teachify", wsdlLocation = "WEB-INF/wsdl/NewWebServiceFromWSDL/Teachify.wsdl")
+@WebService(serviceName = "Teachify", portName = "TeachifySOAPPort", endpointInterface = "it.univaq.disim.mwt.teachify.presentation.webservice.common.TeachifyInterface", targetNamespace = "http://www.univaq.it/mwt/soa/teachify", wsdlLocation = "WEB-INF/wsdl/TeachifyWebService/Teachify.wsdl")
 public class TeachifyWebService extends SpringBeanAutowiringSupport{
 	@Autowired
-	private TutorService tutorService ;
+	TutorService service;
+	
+    private Error createErrorFromBusinessException(BusinessException e) {
+        TError info = new TError();
+        info.setCode(1);
+        info.setMessage(e.getMessage());
+        return new Error("Exception", info, e);
+    }
 
     public void createTutor(it.univaq.disim.mwt.teachify.presentation.webservice.common.TTutor tutor) throws it.univaq.disim.mwt.teachify.presentation.webservice.common.Error {
+        //TODO implement this method
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
@@ -80,8 +73,8 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
     }
 
     public it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequestList findWaitingRequestsByTutor(it.univaq.disim.mwt.teachify.presentation.webservice.common.TTutor tutor) throws it.univaq.disim.mwt.teachify.presentation.webservice.common.Error {
-        List<Request> requests =  tutorService.findWaitingRequestsByTutor(Converter.toTutor(tutor));
-        return Converter.fromRequestList(requests);
+        //TODO implement this method
+        throw new UnsupportedOperationException("Not implemented yet.");
     }
 
     public it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequestList findRequestsByUser(it.univaq.disim.mwt.teachify.presentation.webservice.common.TUser user) throws it.univaq.disim.mwt.teachify.presentation.webservice.common.Error {
@@ -92,6 +85,14 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
     public it.univaq.disim.mwt.teachify.presentation.webservice.common.TStatusRequest statusOfRequest(it.univaq.disim.mwt.teachify.presentation.webservice.common.TUser user, it.univaq.disim.mwt.teachify.presentation.webservice.common.TTutor tutor) throws it.univaq.disim.mwt.teachify.presentation.webservice.common.Error {
         //TODO implement this method
         throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
+    public it.univaq.disim.mwt.teachify.presentation.webservice.common.TTutor findTutorByPK(long id) throws it.univaq.disim.mwt.teachify.presentation.webservice.common.Error {
+    	try {
+        	return Converter.fromTutor(service.findTutorByPk(id));
+		} catch (BusinessException e) {
+			throw createErrorFromBusinessException(e);
+		}
     }
     
 }

@@ -19,15 +19,15 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="long" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="surname" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
- *         &lt;element name="location" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TLocation" minOccurs="0"/>
- *         &lt;element name="price" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TPrice" minOccurs="0"/>
- *         &lt;element name="availabilities" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TAvailability" maxOccurs="unbounded"/>
- *         &lt;element name="lessons" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TLesson" maxOccurs="unbounded"/>
- *         &lt;element name="contact" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TContact" minOccurs="0"/>
+ *         &lt;element name="location" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TLocation" minOccurs="0"/>
+ *         &lt;element name="price" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TPrice" minOccurs="0"/>
+ *         &lt;element name="availabilities" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TAvailability" maxOccurs="unbounded"/>
+ *         &lt;element name="lessons" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TLesson" maxOccurs="unbounded"/>
+ *         &lt;element name="contact" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TContact" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TTutor", propOrder = {
-    "_id",
+    "id",
     "name",
     "surname",
     "rating",
@@ -50,8 +50,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class TTutor {
 
-    @XmlElement(name = "id")
-    protected Long _id;
+    protected Long id;
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
@@ -66,7 +65,7 @@ public class TTutor {
     protected TContact contact;
 
     /**
-     * Recupera il valore della proprietà long.
+     * Recupera il valore della proprietà id.
      * 
      * @return
      *     possible object is
@@ -74,11 +73,11 @@ public class TTutor {
      *     
      */
     public Long getId() {
-        return _id;
+        return id;
     }
 
     /**
-     * Imposta il valore della proprietà long.
+     * Imposta il valore della proprietà id.
      * 
      * @param value
      *     allowed object is
@@ -86,7 +85,7 @@ public class TTutor {
      *     
      */
     public void setId(Long value) {
-        this._id = value;
+        this.id = value;
     }
 
     /**

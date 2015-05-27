@@ -18,9 +18,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="from" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}THour"/>
- *         &lt;element name="to" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}THour"/>
- *         &lt;element name="day" type="{http://www.univaq.t/mwt/soa/Teachify.xsd1}TDay"/>
+ *         &lt;element name="from" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}THour"/>
+ *         &lt;element name="to" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}THour"/>
+ *         &lt;element name="day" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TDay"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

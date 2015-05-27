@@ -1,26 +1,19 @@
-package it.univaq.disim.mwt.teachify.presentation.rest.model;
+package it.univaq.disim.mwt.teachify.business;
 
 public class TutorInfo {
 	
-	private String uri;
+	private long id;
 	private long distance;
 	
 	public TutorInfo() {
 	}
 
-	public TutorInfo(String uri, long distance) {
+	public TutorInfo(long id, long distance) {
 		super();
-		this.uri = uri;
+		this.setId(id);
 		this.distance = distance;
 	}
 
-	public String getUri() {
-		return uri;
-	}
-
-	public void setUri(String uri) {
-		this.uri = uri;
-	}
 
 	public long getDistance() {
 		return distance;
@@ -28,6 +21,14 @@ public class TutorInfo {
 
 	public void setDistance(long distance) {
 		this.distance = distance;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

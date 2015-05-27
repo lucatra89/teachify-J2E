@@ -1,4 +1,4 @@
-package it.univaq.disim.mwt.teachify.business.model;
+package it.univaq.disim.mwt.teachify.business;
 
 public class RequestTutors implements java.io.Serializable {
 	private float latitude;

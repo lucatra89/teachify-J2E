@@ -23,6 +23,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import it.univaq.disim.mwt.teachify.business.BusinessException;
+import it.univaq.disim.mwt.teachify.business.RequestTutors;
+import it.univaq.disim.mwt.teachify.business.TutorInfo;
 import it.univaq.disim.mwt.teachify.business.TutorService;
 import it.univaq.disim.mwt.teachify.business.model.Availability;
 import it.univaq.disim.mwt.teachify.business.model.Contact;
@@ -34,7 +36,6 @@ import it.univaq.disim.mwt.teachify.business.model.Lesson;
 import it.univaq.disim.mwt.teachify.business.model.Location;
 import it.univaq.disim.mwt.teachify.business.model.Price;
 import it.univaq.disim.mwt.teachify.business.model.Request;
-import it.univaq.disim.mwt.teachify.business.model.RequestTutors;
 import it.univaq.disim.mwt.teachify.business.model.StatusRequest;
 import it.univaq.disim.mwt.teachify.business.model.Subject;
 import it.univaq.disim.mwt.teachify.business.model.Tutor;
@@ -131,16 +132,16 @@ public class JDBCTutorService implements TutorService {
 	}
 
 	@Override
-	public List<Tutor> searchTutors(RequestTutors request) {
+	public List<TutorInfo> searchTutors(RequestTutors request) {
 		PreparedStatement st = null;
 		Connection con = null;
 		ResultSet rs = null;
-		List<Tutor> result = new ArrayList<Tutor>();
+		List<TutorInfo> result = new ArrayList<TutorInfo>();
 		
 		
 		try{
 			
-			String sql = "SELECT u.user_id, u.name , u.surname, sdo_nn_distance (1) distance, p.x as latitude, p.y as longitude "
+			String sql = "SELECT u.user_id, sdo_nn_distance (1) distance "
 						+ "FROM tutors t , users u, table(sdo_util.getvertices(t.tutor_geo_location)) p "
 						+ "WHERE t.user_id = u.user_id "
 						+ "AND sdo_nn (t.tutor_geo_location, SDO_GEOMETRY(2001, 8307, SDO_POINT_TYPE (? , ? ,NULL), NULL, NULL),'sdo_num_res=3', 1)= 'TRUE' "
@@ -154,32 +155,15 @@ public class JDBCTutorService implements TutorService {
 			
 			while(rs.next()){
 				long id = rs.getLong("user_id");
-				String surname = rs.getString("name");
-				String name = rs.getString("surname");
 				long distance = rs.getLong("distance");
-				float latitude = rs.getFloat("latitude");
-				float longitude = rs.getFloat("longitude");
-				byte[] img = {};
 				
-				Tutor tutor = new Tutor();
-				Location location = new Location();
-				location.setLatitude(latitude);
-				location.setLongitude(longitude);
+				TutorInfo tutorInfo = new TutorInfo();
 				
-				Path path = Paths.get(imagesPath + id + '.' + imagesFormat);
-				try {
-					img = Files.readAllBytes(path);
-				} catch (IOException e) {}
+				tutorInfo.setId(id);
+				tutorInfo.setDistance(distance);
 				
-				tutor.setId(id);
-				tutor.setName(name);
-				tutor.setSurname(surname);
-				tutor.setDistance(distance);
-				tutor.setLocation(location);
-				
-				tutor.setPhoto(img);
 
-				result.add(tutor);
+				result.add(tutorInfo);
 			}
 
 			

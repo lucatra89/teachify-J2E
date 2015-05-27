@@ -17,20 +17,20 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "Teachify", targetNamespace = "http://www.univaq.t/mwt/soa/teachify", wsdlLocation = "file:/Users/lucatraini/Developer/NetBeansProjects/teachify_ws/src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/Teachify.wsdl")
+@WebServiceClient(name = "Teachify", targetNamespace = "http://www.univaq.it/mwt/soa/teachify", wsdlLocation = "file:/Users/lucatraini/Developer/NetBeansProjects/teachify_ws/src/conf/xml-resources/web-services/TeachifyWebService/wsdl/Teachify.wsdl")
 public class Teachify
     extends Service
 {
 
     private final static URL TEACHIFY_WSDL_LOCATION;
     private final static WebServiceException TEACHIFY_EXCEPTION;
-    private final static QName TEACHIFY_QNAME = new QName("http://www.univaq.t/mwt/soa/teachify", "Teachify");
+    private final static QName TEACHIFY_QNAME = new QName("http://www.univaq.it/mwt/soa/teachify", "Teachify");
 
     static {
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/lucatraini/Developer/NetBeansProjects/teachify_ws/src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/Teachify.wsdl");
+            url = new URL("file:/Users/lucatraini/Developer/NetBeansProjects/teachify_ws/src/conf/xml-resources/web-services/TeachifyWebService/wsdl/Teachify.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -69,7 +69,7 @@ public class Teachify
      */
     @WebEndpoint(name = "TeachifySOAPPort")
     public TeachifyInterface getTeachifySOAPPort() {
-        return super.getPort(new QName("http://www.univaq.t/mwt/soa/teachify", "TeachifySOAPPort"), TeachifyInterface.class);
+        return super.getPort(new QName("http://www.univaq.it/mwt/soa/teachify", "TeachifySOAPPort"), TeachifyInterface.class);
     }
 
     /**
@@ -81,7 +81,7 @@ public class Teachify
      */
     @WebEndpoint(name = "TeachifySOAPPort")
     public TeachifyInterface getTeachifySOAPPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://www.univaq.t/mwt/soa/teachify", "TeachifySOAPPort"), TeachifyInterface.class, features);
+        return super.getPort(new QName("http://www.univaq.it/mwt/soa/teachify", "TeachifySOAPPort"), TeachifyInterface.class, features);
     }
 
     private static URL __getWsdlLocation() {
