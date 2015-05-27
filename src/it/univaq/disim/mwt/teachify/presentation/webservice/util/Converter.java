@@ -43,6 +43,8 @@ public class Converter {
 		user.setId(tUser.getId());
 		user.setName(tUser.getName());
 		user.setSurname(tUser.getSurname());
+		user.setEmail(tUser.getEmail());
+		user.setPassword(tUser.getPassword());
 		return user;
 	}
 
@@ -59,7 +61,21 @@ public class Converter {
 		tutor.setId(tTutor.getId());
 		tutor.setName(tTutor.getName());
 		tutor.setSurname(tTutor.getSurname());
+		tutor.setEmail(tTutor.getEmail());
+		tutor.setPassword(tTutor.getPassword());
+		tutor.setLocation(toLocation(tTutor.getLocation()));
 		return tutor;
+	}
+
+	public static Location toLocation(TLocation tLocation) {
+		if(tLocation == null){
+			return null;
+		}
+		Location location = new Location();
+		location.setLatitude(tLocation.getLatitude());
+		location.setLongitude(tLocation.getLongitude());
+		location.setName(tLocation.getName());
+		return location;
 	}
 
 	public static TTutor fromTutor(Tutor tutor) {

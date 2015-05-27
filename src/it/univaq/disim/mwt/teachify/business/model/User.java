@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class User implements java.io.Serializable {
 
-	private long id;
+	private Long id;
 	private String email;
 	private String password;
 	private String name;
@@ -35,11 +35,11 @@ public class User implements java.io.Serializable {
 		this.groups = groups;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

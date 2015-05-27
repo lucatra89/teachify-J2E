@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Request implements java.io.Serializable {
 
-	private long id;
+	private Long id;
 	private Tutor tutor;
 	private User user;
 	private String description;
@@ -18,11 +18,11 @@ public class Request implements java.io.Serializable {
 	}
 
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

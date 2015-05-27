@@ -8,6 +8,7 @@ package it.univaq.disim.mwt.teachify.presentation.webservice;
 import it.univaq.disim.mwt.teachify.business.BusinessException;
 import it.univaq.disim.mwt.teachify.business.TutorService;
 import it.univaq.disim.mwt.teachify.business.model.Request;
+import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TError;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequest;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequestList;
@@ -41,9 +42,17 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
         return new Error("Exception", info, e);
     }
     
-    public long createTutor(TTutor tutor) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public long createTutor(TTutor tTutor) throws Error {
+        Tutor tutor = null;
+        try{
+        	tutor = Converter.toTutor(tTutor);
+        	service.createTutor(tutor);
+        }catch(Exception e){
+        	throw createErrorFromException(e);
+        }
+        
+        return tutor.getId();
+        
     }
 
     public void updateTutorDescription(TTutor tutor) throws Error {

@@ -54,7 +54,9 @@ public class JDBCTutorService implements TutorService {
 	
 	@Override
 	public void createTutor(Tutor tutor) throws BusinessException {
-		logger.info(tutor.getLocation().getLatitude() + " " + tutor.getLocation().getLongitude() +" "+ tutor.getLocation().getName() );
+		logger.info("Location:" + tutor.getLocation().getLatitude() + " " + tutor.getLocation().getLongitude() +" "+ tutor.getLocation().getName() );
+		logger.info("Name: " + tutor.getName() + " "+ tutor.getSurname());
+		tutor.setId(1l);
 
 	}
 

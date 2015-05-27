@@ -22,6 +22,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="surname" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
  *         &lt;element name="location" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TLocation" minOccurs="0"/>
  *         &lt;element name="price" type="{http://www.univaq.it/mwt/soa/Teachify.xsd1}TPrice" minOccurs="0"/>
@@ -41,6 +43,8 @@ import javax.xml.bind.annotation.XmlType;
     "id",
     "name",
     "surname",
+    "email",
+    "password",
     "rating",
     "location",
     "price",
@@ -55,6 +59,10 @@ public class TTutor {
     protected String name;
     @XmlElement(required = true)
     protected String surname;
+    @XmlElement(required = true)
+    protected String email;
+    @XmlElement(required = true)
+    protected String password;
     protected Float rating;
     protected TLocation location;
     protected TPrice price;
@@ -134,6 +142,54 @@ public class TTutor {
      */
     public void setSurname(String value) {
         this.surname = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà email.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Imposta il valore della proprietà email.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEmail(String value) {
+        this.email = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà password.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Imposta il valore della proprietà password.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPassword(String value) {
+        this.password = value;
     }
 
     /**
