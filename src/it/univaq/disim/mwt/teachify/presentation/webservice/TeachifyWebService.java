@@ -7,6 +7,7 @@ package it.univaq.disim.mwt.teachify.presentation.webservice;
 
 import it.univaq.disim.mwt.teachify.business.BusinessException;
 import it.univaq.disim.mwt.teachify.business.TutorService;
+import it.univaq.disim.mwt.teachify.business.model.Request;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TError;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequest;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequestList;
@@ -33,7 +34,7 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
 	@Autowired
 	TutorService service;
 	
-    private Error createErrorFromBusinessException(BusinessException e) {
+    private Error createErrorFromException(Exception e) {
         TError info = new TError();
         info.setCode(1);
         info.setMessage(e.getMessage());
@@ -70,9 +71,15 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
-    public long createRequest(TRequest request) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public long createRequest(TRequest tRequest) throws Error {
+    	Request request = null;
+    	try{
+    		request = Converter.toRequest(tRequest);
+    		service.createRequest(request);
+    	}catch(Exception e){
+    		throw createErrorFromException(e);
+    	}
+        return request.getId();
     }
 
     public void updateStatusRequest(TRequest request) throws Error {
@@ -98,8 +105,8 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
     public TTutor findTutorByPK(long id) throws Error {
     	try {
         	return Converter.fromTutor(service.findTutorByPk(id));
-		} catch (BusinessException e) {
-			throw createErrorFromBusinessException(e);
+		} catch (Exception e) {
+			throw createErrorFromException(e);
 		}
     }
     

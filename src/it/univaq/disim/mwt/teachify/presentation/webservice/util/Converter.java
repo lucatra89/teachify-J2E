@@ -16,6 +16,7 @@ import it.univaq.disim.mwt.teachify.business.model.Lesson;
 import it.univaq.disim.mwt.teachify.business.model.Location;
 import it.univaq.disim.mwt.teachify.business.model.Price;
 import it.univaq.disim.mwt.teachify.business.model.Request;
+import it.univaq.disim.mwt.teachify.business.model.StatusRequest;
 import it.univaq.disim.mwt.teachify.business.model.Subject;
 import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.business.model.TypeOfEducation;
@@ -172,7 +173,7 @@ public class Converter {
 		return tRequestList;
 	}
 
-	private static TRequest fromRequest(Request request) {
+	public static TRequest fromRequest(Request request) {
 		TRequest tRequest = new TRequest();
 		tRequest.setId(request.getId());
 		tRequest.setStatus(TStatusRequest.fromValue(request.getStatus().name()));
@@ -193,5 +194,17 @@ public class Converter {
 		} catch (DatatypeConfigurationException ex) {
 		}
 		return xmlCalendar;
+	}
+
+	public static Request toRequest(TRequest tRequest) {
+		Request request = new Request();
+		request.setCreatedAt(tRequest.getCreatedAt().toGregorianCalendar().getTime());
+		request.setDescription(tRequest.getDescription());
+		request.setTutor(toTutor(tRequest.getTutor()));
+		request.setUser(toUser(tRequest.getUser()));
+		request.setId(tRequest.getId());
+		request.setStatus(StatusRequest.valueOf(tRequest.getStatus().value()));
+		
+		return request;
 	}
 }

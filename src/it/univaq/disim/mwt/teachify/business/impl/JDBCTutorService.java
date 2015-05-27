@@ -309,8 +309,16 @@ public class JDBCTutorService implements TutorService {
 
 	@Override
 	public void createRequest(Request request) {
-		// TODO Auto-generated method stub
-		
+		logger.info(request.getCreatedAt());
+		logger.info("User Id: " + request.getUser().getId());
+		logger.info("User Name: " + request.getUser().getName());
+		logger.info("User Surname: " + request.getUser().getSurname());
+		logger.info("Tutor Id: " + request.getTutor().getId());
+		logger.info("Tutor Name: " + request.getTutor().getName());
+		logger.info("Tutor Surname: " + request.getTutor().getSurname());
+		logger.info("Status: " + request.getStatus().name());
+		logger.info(request.getDescription());
+		request.setId(27l);
 	}
 
 	@Override
@@ -351,9 +359,9 @@ public class JDBCTutorService implements TutorService {
 		Request b = new Request();
 		Request c = new Request();
 		
-		a.setId(1);
-		b.setId(2);
-		c.setId(3);
+		a.setId(1l);
+		b.setId(2l);
+		c.setId(3l);
 		
 		a.setTutor(tutor);
 		b.setTutor(tutor);
@@ -391,10 +399,10 @@ public class JDBCTutorService implements TutorService {
 		Request c = new Request();
 		Request d = new Request();
 				
-		a.setId(1);
-		b.setId(2);
-		c.setId(3);
-		d.setId(3);
+		a.setId(1l);
+		b.setId(2l);
+		c.setId(3l);
+		d.setId(3l);
 		
 		a.setUser(user);
 		b.setUser(user);
