@@ -26,10 +26,13 @@ public interface TeachifyInterface {
     /**
      * 
      * @param tutor
+     * @return
+     *     returns long
      * @throws Error
      */
     @WebMethod(action = "TeachifyInterface#createTutor")
-    public void createTutor(
+    @WebResult(name = "id", partName = "id")
+    public long createTutor(
         @WebParam(name = "tutor", partName = "tutor")
         TTutor tutor)
         throws Error
@@ -37,49 +40,49 @@ public interface TeachifyInterface {
 
     /**
      * 
-     * @param description
+     * @param tutor
      * @throws Error
      */
     @WebMethod(action = "TeachifyInterface#updateTutorDescription")
     public void updateTutorDescription(
-        @WebParam(name = "description", partName = "description")
-        String description)
+        @WebParam(name = "tutor", partName = "tutor")
+        TTutor tutor)
         throws Error
     ;
 
     /**
      * 
-     * @param location
+     * @param tutor
      * @throws Error
      */
     @WebMethod(action = "TeachifyInterface#updateTutorLocation")
     public void updateTutorLocation(
-        @WebParam(name = "location", partName = "location")
-        TLocation location)
+        @WebParam(name = "tutor", partName = "tutor")
+        TTutor tutor)
         throws Error
     ;
 
     /**
      * 
-     * @param price
+     * @param tutor
      * @throws Error
      */
     @WebMethod(action = "TeachifyInterface#updateTutorPrice")
     public void updateTutorPrice(
-        @WebParam(name = "price", partName = "price")
-        TPrice price)
+        @WebParam(name = "tutor", partName = "tutor")
+        TTutor tutor)
         throws Error
     ;
 
     /**
      * 
-     * @param contact
+     * @param tutor
      * @throws Error
      */
     @WebMethod(action = "TeachifyInterface#updateTutorContact")
     public void updateTutorContact(
-        @WebParam(name = "contact", partName = "contact")
-        TContact contact)
+        @WebParam(name = "tutor", partName = "tutor")
+        TTutor tutor)
         throws Error
     ;
 
@@ -101,10 +104,13 @@ public interface TeachifyInterface {
     /**
      * 
      * @param request
+     * @return
+     *     returns long
      * @throws Error
      */
     @WebMethod(action = "TeachifyInterface#createRequest")
-    public void createRequest(
+    @WebResult(name = "id", partName = "id")
+    public long createRequest(
         @WebParam(name = "request", partName = "request")
         TRequest request)
         throws Error
@@ -112,13 +118,13 @@ public interface TeachifyInterface {
 
     /**
      * 
-     * @param status
+     * @param request
      * @throws Error
      */
     @WebMethod(action = "TeachifyInterface#updateStatusRequest")
     public void updateStatusRequest(
-        @WebParam(name = "status", partName = "status")
-        TStatusRequest status)
+        @WebParam(name = "request", partName = "request")
+        TRequest request)
         throws Error
     ;
 

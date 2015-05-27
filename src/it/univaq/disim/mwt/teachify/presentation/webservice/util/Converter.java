@@ -151,7 +151,7 @@ public class Converter {
 		TPrice tPrice = new TPrice();
 		tPrice.setId(price.getId());
 		tPrice.setValue(price.getValue());
-		return null;
+		return tPrice;
 	}
 
 	public static TContact fromContact(Contact contact) {

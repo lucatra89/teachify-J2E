@@ -176,22 +176,16 @@
             <xsd:element name="EError" type="xsd1:TError"/>
         </xsd:schema>
     </wsdl:types>
-    <wsdl:message name="Description">
-        <wsdl:part name="description" type="xsd:string"/>
-    </wsdl:message>
     <wsdl:message name="User">
         <wsdl:part name="user" type="xsd1:TUser"/>
-    </wsdl:message>
-    <wsdl:message name="Tutor">
-        <wsdl:part name="tutor" type="xsd1:TTutor"/>
     </wsdl:message>
     <wsdl:message name="TutorInfoList">
         <wsdl:part name="tutorInfoList" type="xsd1:TTutorInfoList"/>
     </wsdl:message>
-    <wsdl:message name="Void">   </wsdl:message>
-    <wsdl:message name="Contact">
-        <wsdl:part name="contact" type="xsd1:TContact"/>
+    <wsdl:message name="Tutor">
+        <wsdl:part name="tutor" type="xsd1:TTutor"/>
     </wsdl:message>
+    <wsdl:message name="Void">   </wsdl:message>
     <wsdl:message name="RequestTutors">
         <wsdl:part name="requestTutors" type="xsd1:TRequestTutors"/>
     </wsdl:message>
@@ -201,48 +195,42 @@
     <wsdl:message name="Request">
         <wsdl:part name="request" type="xsd1:TRequest"/>
     </wsdl:message>
-    <wsdl:message name="Location">
-        <wsdl:part name="location" type="xsd1:TLocation"/>
-    </wsdl:message>
-    <wsdl:message name="Pk">
-        <wsdl:part name="id" type="xsd:long"/>
+    <wsdl:message name="StatusRequest">
+        <wsdl:part name="status" type="xsd1:TStatusRequest"/>
     </wsdl:message>
     <wsdl:message name="Error">
         <wsdl:part element="xsd1:EError" name="error"/>
+    </wsdl:message>
+    <wsdl:message name="Pk">
+        <wsdl:part name="id" type="xsd:long"/>
     </wsdl:message>
     <wsdl:message name="UserAndTutor">
         <wsdl:part name="user" type="xsd1:TUser"/>
         <wsdl:part name="tutor" type="xsd1:TTutor"/>
     </wsdl:message>
-    <wsdl:message name="Price">
-        <wsdl:part name="price" type="xsd1:TPrice"/>
-    </wsdl:message>
-    <wsdl:message name="StatusRequest">
-        <wsdl:part name="status" type="xsd1:TStatusRequest"/>
-    </wsdl:message>
     <wsdl:portType name="TeachifyInterface">
         <wsdl:operation name="createTutor">
+            <wsdl:input message="tns:Tutor"/>
+            <wsdl:output message="tns:Pk"/>
+            <wsdl:fault message="tns:Error" name="TeachifyError"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateTutorDescription">
             <wsdl:input message="tns:Tutor"/>
             <wsdl:output message="tns:Void"/>
             <wsdl:fault message="tns:Error" name="TeachifyError"/>
         </wsdl:operation>
-        <wsdl:operation name="updateTutorDescription">
-            <wsdl:input message="tns:Description"/>
-            <wsdl:output message="tns:Void"/>
-            <wsdl:fault message="tns:Error" name="TeachifyError"/>
-        </wsdl:operation>
         <wsdl:operation name="updateTutorLocation">
-            <wsdl:input message="tns:Location"/>
+            <wsdl:input message="tns:Tutor"/>
             <wsdl:output message="tns:Void"/>
             <wsdl:fault message="tns:Error" name="TeachifyError"/>
         </wsdl:operation>
         <wsdl:operation name="updateTutorPrice">
-            <wsdl:input message="tns:Price"/>
+            <wsdl:input message="tns:Tutor"/>
             <wsdl:output message="tns:Void"/>
             <wsdl:fault message="tns:Error" name="TeachifyError"/>
         </wsdl:operation>
         <wsdl:operation name="updateTutorContact">
-            <wsdl:input message="tns:Contact"/>
+            <wsdl:input message="tns:Tutor"/>
             <wsdl:output message="tns:Void"/>
             <wsdl:fault message="tns:Error" name="TeachifyError"/>
         </wsdl:operation>
@@ -253,11 +241,11 @@
         </wsdl:operation>
         <wsdl:operation name="createRequest">
             <wsdl:input message="tns:Request"/>
-            <wsdl:output message="tns:Void"/>
+            <wsdl:output message="tns:Pk"/>
             <wsdl:fault message="tns:Error" name="TeachifyError"/>
         </wsdl:operation>
         <wsdl:operation name="updateStatusRequest">
-            <wsdl:input message="tns:StatusRequest"/>
+            <wsdl:input message="tns:Request"/>
             <wsdl:output message="tns:Void"/>
             <wsdl:fault message="tns:Error" name="TeachifyError"/>
         </wsdl:operation>
@@ -289,7 +277,6 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="tutor"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
@@ -306,7 +293,6 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="description"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
@@ -323,7 +309,6 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="location"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
@@ -340,7 +325,6 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="price"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
@@ -357,7 +341,6 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="contact"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
@@ -374,13 +357,11 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="requestTutors"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="tutorInfoList"
                     use="literal"/>
             </wsdl:output>
             <wsdl:fault name="TeachifyError">
@@ -392,7 +373,6 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="request"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
@@ -409,7 +389,6 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="status"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
@@ -426,13 +405,11 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="tutor"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="requests"
                     use="literal"/>
             </wsdl:output>
             <wsdl:fault name="TeachifyError">
@@ -444,13 +421,11 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="user"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/data"
-                    parts="requests"
                     use="literal"/>
             </wsdl:output>
             <wsdl:fault name="TeachifyError">
@@ -462,13 +437,11 @@
             <wsdl:input>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="user tutor"
                     use="literal"/>
             </wsdl:input>
             <wsdl:output>
                 <soap:body
                     namespace="http://www.univaq.it/mwt/soa/teachify/data"
-                    parts="status"
                     use="literal"/>
             </wsdl:output>
             <wsdl:fault name="TeachifyError">
@@ -490,7 +463,7 @@
     </wsdl:binding>
     <wsdl:service name="Teachify">
         <wsdl:port binding="tns:TeachifySOAP" name="TeachifySOAPPort">
-            <soap:address location="http://localhost:8080/teachify/webservices"/>
+            <soap:address location="http://localhost:8080/teachify/webservice"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>
