@@ -5,9 +5,9 @@
  */
 package it.univaq.disim.mwt.teachify.presentation.webservice;
 
-import it.univaq.disim.mwt.teachify.business.BusinessException;
 import it.univaq.disim.mwt.teachify.business.TutorService;
 import it.univaq.disim.mwt.teachify.business.model.Request;
+import it.univaq.disim.mwt.teachify.business.model.StatusRequest;
 import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TError;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequest;
@@ -55,29 +55,44 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
         
     }
 
-    public void updateTutorDescription(TTutor tutor) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public void updateTutorDescription(TTutor tTutor) throws Error {
+        try {
+			service.updateTutorDescription(Converter.toTutor(tTutor));
+		} catch (Exception e) {
+			throw createErrorFromException(e);
+		}
     }
 
-    public void updateTutorLocation(TTutor tutor) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public void updateTutorLocation(TTutor tTutor) throws Error {
+        try {
+			service.updateTutorLocation(Converter.toTutor(tTutor));
+		} catch (Exception e) {
+			throw createErrorFromException(e);
+		}
     }
 
-    public void updateTutorPrice(TTutor tutor) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public void updateTutorPrice(TTutor tTutor) throws Error {
+        try {
+			service.updateTutorPrice(Converter.toTutor(tTutor));
+		} catch (Exception e) {
+			throw createErrorFromException(e);
+		}
     }
 
-    public void updateTutorContact(TTutor tutor) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public void updateTutorContact(TTutor tTutor) throws Error {
+        try {
+			service.updateTutorContact(Converter.toTutor(tTutor));
+		} catch (Exception e) {
+			throw createErrorFromException(e);
+		}
     }
 
     public TTutorInfoList searchTutors(TRequestTutors requestTutors) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+        try {
+			return Converter.fromTutorInfoList(service.searchTutors(Converter.toRequestTutors(requestTutors)));
+		} catch (Exception e) {
+			throw createErrorFromException(e);
+		}
     }
 
     public long createRequest(TRequest tRequest) throws Error {
@@ -91,24 +106,39 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
         return request.getId();
     }
 
-    public void updateStatusRequest(TRequest request) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public void updateStatusRequest(TRequest tRequest) throws Error {
+    	try {
+        	service.updateStatusRequest(Converter.toRequest(tRequest));
+		} catch (Exception e) {
+    		throw createErrorFromException(e);
+		}
     }
 
-    public TRequestList findWaitingRequestsByTutor(TTutor tutor) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public TRequestList findWaitingRequestsByTutor(TTutor tTutor) throws Error {
+    	try {
+    		return Converter.fromRequestList(service.findWaitingRequestsByTutor(Converter.toTutor(tTutor)));
+		} catch (Exception e) {
+    		throw createErrorFromException(e);
+		}
     }
 
-    public TRequestList findRequestsByUser(TUser user) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public TRequestList findRequestsByUser(TUser tUser) throws Error {
+    	try {
+    		return Converter.fromRequestList(service.findRequestsByUser(Converter.toUser(tUser)));
+		} catch (Exception e) {
+    		throw createErrorFromException(e);
+		}
     }
 
-    public TStatusRequest statusOfRequest(TUser user, TTutor tutor) throws Error {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public TStatusRequest statusOfRequest(TUser tUser, TTutor tTutor) throws Error {
+    	StatusRequest status = null;
+    	try {
+    		status = service.statusOfRequest(Converter.toUser(tUser),Converter.toTutor(tTutor));
+		} catch (Exception e) {
+    		throw createErrorFromException(e);
+		}
+    	
+    	return Converter.fromStatusRequest(status);
     }
 
     public TTutor findTutorByPK(long id) throws Error {

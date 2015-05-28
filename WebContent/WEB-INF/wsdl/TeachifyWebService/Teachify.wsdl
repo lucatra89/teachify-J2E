@@ -159,8 +159,9 @@
                     <xsd:element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
                     <xsd:element maxOccurs="1" minOccurs="1" name="name" type="xsd:string"/>
                     <xsd:element maxOccurs="1" minOccurs="1" name="surname" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="1" name="email" type="xsd:string"/>
-                    <xsd:element maxOccurs="1" minOccurs="1" name="password" type="xsd:string"/>                     
+                    <xsd:element maxOccurs="1" minOccurs="0" name="email" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="password" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="description" type="xsd:string"/>                      
                     <xsd:element maxOccurs="1" minOccurs="0" name="rating" type="xsd:float"/>
                     <xsd:element maxOccurs="1" minOccurs="0" name="location" type="xsd1:TLocation"/>
                     <xsd:element maxOccurs="1" minOccurs="0" name="price" type="xsd1:TPrice"/>

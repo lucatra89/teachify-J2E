@@ -135,6 +135,11 @@ public class JDBCTutorService implements TutorService {
 
 	@Override
 	public List<TutorInfo> searchTutors(RequestTutors request) {
+		logger.info(request.getLatitude());
+		logger.info(request.getLongitude());
+		logger.info(request.getSubjectId());
+		logger.info(request.getTypeOfEducationId());
+		
 		PreparedStatement st = null;
 		Connection con = null;
 		ResultSet rs = null;
@@ -348,8 +353,7 @@ public class JDBCTutorService implements TutorService {
 
 	@Override
 	public void updateStatusRequest(Request request) throws BusinessException {
-		// TODO Auto-generated method stub
-		
+		logger.info("Request with id: " + request.getId() + " updated with status " + request.getStatus());
 	}
 
 	@Override
@@ -404,7 +408,7 @@ public class JDBCTutorService implements TutorService {
 		a.setId(1l);
 		b.setId(2l);
 		c.setId(3l);
-		d.setId(3l);
+		d.setId(4l);
 		
 		a.setUser(user);
 		b.setUser(user);
@@ -426,6 +430,13 @@ public class JDBCTutorService implements TutorService {
 		c.setStatus(StatusRequest.Waiting);
 		d.setStatus(StatusRequest.Accepted);
 		
+		
+		a.setCreatedAt(new Date());
+		b.setCreatedAt(new Date());
+		c.setCreatedAt(new Date());
+		d.setCreatedAt(new Date());
+
+		
 		list.add(a);
 		list.add(b);
 		list.add(c);
@@ -442,20 +453,22 @@ public class JDBCTutorService implements TutorService {
 
 	@Override
 	public void updateTutorDescription(Tutor tutor) throws BusinessException {
-		// TODO Auto-generated method stub
+		logger.info("tutor id: " + tutor.getId());
+		logger.info("description: " + tutor.getDescription());
 		
 	}
 
 	@Override
 	public void updateTutorLocation(Tutor tutor) throws BusinessException {
-		// TODO Auto-generated method stub
+		logger.info("tutor id: " + tutor.getId());
+		logger.info("location: " + tutor.getLocation().getName() + " (" + tutor.getLocation().getLatitude() + " , " + tutor.getLocation().getLongitude() + " )");
 		
 	}
 
 	@Override
 	public void updateTutorPrice(Tutor tutor) throws BusinessException {
-		// TODO Auto-generated method stub
-		
+		logger.info("tutor id: " + tutor.getId());
+		logger.info("price: " + tutor.getPrice().getValue() + " (id " + tutor.getPrice().getId() + ")");
 	}
 
 	@Override

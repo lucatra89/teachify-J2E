@@ -9,6 +9,8 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import it.univaq.disim.mwt.teachify.business.RequestTutors;
+import it.univaq.disim.mwt.teachify.business.TutorInfo;
 import it.univaq.disim.mwt.teachify.business.model.Availability;
 import it.univaq.disim.mwt.teachify.business.model.Contact;
 import it.univaq.disim.mwt.teachify.business.model.Hour;
@@ -30,9 +32,12 @@ import it.univaq.disim.mwt.teachify.presentation.webservice.common.TLocation;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TPrice;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequest;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequestList;
+import it.univaq.disim.mwt.teachify.presentation.webservice.common.TRequestTutors;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TStatusRequest;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TSubject;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TTutor;
+import it.univaq.disim.mwt.teachify.presentation.webservice.common.TTutorInfo;
+import it.univaq.disim.mwt.teachify.presentation.webservice.common.TTutorInfoList;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TTypeOfEducation;
 import it.univaq.disim.mwt.teachify.presentation.webservice.common.TUser;
 
@@ -63,8 +68,34 @@ public class Converter {
 		tutor.setSurname(tTutor.getSurname());
 		tutor.setEmail(tTutor.getEmail());
 		tutor.setPassword(tTutor.getPassword());
+		tutor.setDescription(tTutor.getDescription());
 		tutor.setLocation(toLocation(tTutor.getLocation()));
+		tutor.setContact(toContact(tTutor.getContact()));
+		tutor.setPrice(toPrice(tTutor.getPrice()));
 		return tutor;
+	}
+
+	public static Price toPrice(TPrice tPrice) {
+		if(tPrice == null){
+			return null;
+		}
+		Price price = new Price();
+		price.setId(tPrice.getId());
+		price.setValue(tPrice.getValue());
+		
+		return price;
+	}
+
+	public static Contact toContact(TContact tContact) {
+		if(tContact == null){
+			return null;
+		}
+		Contact contact = new Contact();
+		contact.setEmail(tContact.getEmail());
+		contact.setSkype(tContact.getSkype());
+		contact.setTelephone(tContact.getTelephone());
+		
+		return contact;
 	}
 
 	public static Location toLocation(TLocation tLocation) {
@@ -157,6 +188,9 @@ public class Converter {
 	}
 
 	public static TLocation fromLocation(Location location) {
+		if(location == null){
+			return null;
+		}
 		TLocation tLocation = new TLocation();
 		tLocation.setLatitude(location.getLatitude());
 		tLocation.setLongitude(location.getLongitude());
@@ -165,6 +199,10 @@ public class Converter {
 	}
 
 	public static TPrice fromPrice(Price price) {
+		if(price == null){
+			return null;
+		}
+		
 		TPrice tPrice = new TPrice();
 		tPrice.setId(price.getId());
 		tPrice.setValue(price.getValue());
@@ -172,6 +210,10 @@ public class Converter {
 	}
 
 	public static TContact fromContact(Contact contact) {
+		if(contact == null){
+			return null;
+		}
+
 		TContact tContact = new TContact();
 		tContact.setEmail(contact.getEmail());
 		tContact.setSkype(contact.getSkype());
@@ -202,6 +244,9 @@ public class Converter {
 	}
 
 	private static XMLGregorianCalendar toXMLGregorianCalendar(Date date) {
+		if(date == null){
+			return null;
+		}
 		GregorianCalendar gCalendar = new GregorianCalendar();
 		gCalendar.setTime(date);
 		XMLGregorianCalendar xmlCalendar = null;
@@ -219,8 +264,39 @@ public class Converter {
 		request.setTutor(toTutor(tRequest.getTutor()));
 		request.setUser(toUser(tRequest.getUser()));
 		request.setId(tRequest.getId());
-		request.setStatus(StatusRequest.valueOf(tRequest.getStatus().value()));
+		request.setStatus(toStatusRequest(tRequest.getStatus()));
 		
 		return request;
+	}
+
+	public static RequestTutors toRequestTutors(TRequestTutors tRequestTutors) {
+		RequestTutors requestTutors = new RequestTutors();
+		requestTutors.setLatitude(tRequestTutors.getLatitude());
+		requestTutors.setLongitude(tRequestTutors.getLongitude());
+		requestTutors.setSubjectId(tRequestTutors.getSubjectId());
+		requestTutors.setTypeOfEducationId(tRequestTutors.getTypeOfEducationId());
+		
+		return requestTutors;
+	}
+
+	public static TTutorInfoList fromTutorInfoList(List<TutorInfo> infos) {
+		TTutorInfoList tInfoList = new TTutorInfoList();
+		TTutorInfo tInfo = null;
+		
+		for(TutorInfo info : infos){
+			tInfo = new TTutorInfo();
+			tInfo.setDistance(info.getDistance());
+			tInfo.setId(info.getId());
+			tInfoList.getTutors().add(tInfo);
+		}
+				
+		return tInfoList;
+	}
+
+	public static TStatusRequest fromStatusRequest(StatusRequest status) {
+		return TStatusRequest.fromValue(status.name());
+	}
+	public static StatusRequest toStatusRequest(TStatusRequest tStatus) {
+		return StatusRequest.valueOf(tStatus.value());
 	}
 }
