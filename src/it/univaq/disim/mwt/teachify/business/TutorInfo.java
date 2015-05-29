@@ -1,6 +1,6 @@
 package it.univaq.disim.mwt.teachify.business;
 
-public class TutorInfo {
+public class TutorInfo implements java.io.Serializable{
 	
 	private long id;
 	private long distance;

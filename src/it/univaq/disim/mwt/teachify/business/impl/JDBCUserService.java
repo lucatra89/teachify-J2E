@@ -280,9 +280,9 @@ public class JDBCUserService implements UserService {
 	@Override
 	public List<User> findAll() throws BusinessException {
 		List<User> users = new ArrayList<User>();
-		User cici = new User(1,"cici@gino.com", null, null, null, null);
-		User coco = new User(2,"coco@gino.com", null, null, null, null);
-		User cece = new User(3,"cece@gino.com", null, null, null, null);
+		User cici = new User(1l,"cici@gino.com", null, null, null, null);
+		User coco = new User(2l,"coco@gino.com", null, null, null, null);
+		User cece = new User(3l,"cece@gino.com", null, null, null, null);
 		users.add(cece);
 		users.add(coco);
 		users.add(cici);

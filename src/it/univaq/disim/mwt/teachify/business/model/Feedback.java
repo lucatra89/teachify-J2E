@@ -4,8 +4,8 @@ package it.univaq.disim.mwt.teachify.business.model;
 import java.util.Date;
 
 public class Feedback implements java.io.Serializable {
-
-	private long id;
+	
+	private Long id;
 	private String description;
 	private int rating;
 	private Date createdAt;
@@ -24,22 +24,15 @@ public class Feedback implements java.io.Serializable {
 		this.user = user;
 	}
 
-	public Feedback(long id, String description, int rating, Date createdAt, User user, Lesson lesson) {
+	public Feedback(Long id, String description, int rating, Date createdAt, User user, Lesson lesson) {
 		super();
-		this.id = id;
+		this.setId(id);
 		this.description = description;
 		this.setRating(rating);
 		this.createdAt = createdAt;
 		this.user = user;
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getDescription() {
 		return description;
@@ -81,6 +74,14 @@ public class Feedback implements java.io.Serializable {
 
 	public void setTutor(Tutor tutor) {
 		this.tutor = tutor;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 

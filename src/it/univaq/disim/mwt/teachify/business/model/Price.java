@@ -1,7 +1,7 @@
 package it.univaq.disim.mwt.teachify.business.model;
 
 public class Price  implements java.io.Serializable{
-	private long id;
+	private Long id;
 	private int value;
 	
 	
@@ -16,19 +16,19 @@ public class Price  implements java.io.Serializable{
 	}
 
 
-	public Price(long id, int value) {
+	public Price(Long id, int value) {
 		super();
 		this.id = id;
 		this.value = value;
 	}
 
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

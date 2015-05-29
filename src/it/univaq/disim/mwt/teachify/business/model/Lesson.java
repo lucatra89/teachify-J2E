@@ -3,7 +3,7 @@ package it.univaq.disim.mwt.teachify.business.model;
 import java.util.List;
 
 public class Lesson implements java.io.Serializable {
-	private long id;
+	private Long id;
 	private Subject subject;
 	private TypeOfEducation typeOfEducation;
 	private Tutor tutor;
@@ -18,18 +18,18 @@ public class Lesson implements java.io.Serializable {
 		this.typeOfEducation = typeOfEducation;
 	}
 
-	public Lesson(long id, Subject subject, TypeOfEducation typeOfEducation,  List<Feedback> feedback) {
+	public Lesson(Long id, Subject subject, TypeOfEducation typeOfEducation,  List<Feedback> feedback) {
 		super();
 		this.id = id;
 		this.subject = subject;
 		this.typeOfEducation = typeOfEducation;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -1,7 +1,7 @@
 package it.univaq.disim.mwt.teachify.business.model;
 
 public class Hour implements java.io.Serializable {
-	private long id;
+	private Long id;
 	private int value;
 
 	public Hour() {
@@ -13,17 +13,17 @@ public class Hour implements java.io.Serializable {
 		this.value = nome;
 	}
 
-	public Hour(long id, int nome) {
+	public Hour(Long id, int nome) {
 		super();
 		this.id = id;
 		this.value = nome;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

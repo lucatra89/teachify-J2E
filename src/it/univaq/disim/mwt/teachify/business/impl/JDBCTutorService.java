@@ -230,20 +230,13 @@ public class JDBCTutorService implements TutorService {
 				location.setLatitude(latitude);
 				location.setLongitude(longitude);
 				
-				Set<Feedback> feedback = new HashSet<Feedback>();
-				Date now = new Date();
-				Date before = new Date();
-				before.setHours(9);;
-				
-				feedback.add(new Feedback("bravissimo", 4,now, new User(null, null , "Lobiola", "Puzzi", null), null));
-				feedback.add(new Feedback("Fai veramente pena!", 1 , before, new User(null, null , "Ciico", "Bastardo", null), null));
 				
 				
 				Set<Lesson> lessons = new HashSet<Lesson>();
-				lessons.add(new Lesson(1, new Subject(1, "Matematica"), new TypeOfEducation(2, "Medie"),null));
-				lessons.add(new Lesson(2 ,new Subject(1, "Matematica"), new TypeOfEducation(3, "Superiori"), null));
-				lessons.add(new Lesson(3 , new Subject(2, "Fisica"), new TypeOfEducation(3, "Superiori"),  null));
-				lessons.add(new Lesson(4 ,new Subject(2, "Fisica"), new TypeOfEducation(21, "Università"),  null));
+				lessons.add(new Lesson(1l, new Subject(1l, "Matematica"), new TypeOfEducation(2l, "Medie"),null));
+				lessons.add(new Lesson(2l ,new Subject(1l, "Matematica"), new TypeOfEducation(3l, "Superiori"), null));
+				lessons.add(new Lesson(3l , new Subject(2l, "Fisica"), new TypeOfEducation(3l, "Superiori"),  null));
+				lessons.add(new Lesson(4l ,new Subject(2l, "Fisica"), new TypeOfEducation(21l, "Università"),  null));
 				
 				Set<Availability> availabilities = new HashSet<Availability>();
 				availabilities.add(new Availability(Day.Monday, new Hour(8), new Hour(12)));
@@ -254,10 +247,6 @@ public class JDBCTutorService implements TutorService {
 				
 				
 				
-				Set<Request> requests = new HashSet<Request>();
-				Request request = new Request();
-				request.setStatus(StatusRequest.Accepted);
-				requests.add(request);
 				
 				
 				byte[] img = {};
@@ -274,12 +263,10 @@ public class JDBCTutorService implements TutorService {
 				result.setName(name);
 				result.setSurname(surname);
 				result.setDescription(description);
-				result.setFeedbacks(feedback);
 				result.setRating(4.2f);
 				result.setLessons(lessons);
-				result.setPrice(new Price(3,55));
+				result.setPrice(new Price(3l,55));
 				result.setAvailabilities(availabilities);
-				result.setRequests(requests);
 				result.setPhoto(img);
 				result.setContact(contact);
 				
@@ -331,14 +318,14 @@ public class JDBCTutorService implements TutorService {
 	@Override
 	public List<Feedback> findAllFeedback(Tutor tutor) {
 		List<Feedback> list = new ArrayList<Feedback>();
-		Feedback a = new Feedback(1, null, 4, null, null, null);
-		Feedback b = new Feedback(2, null, 4, null, null, null);
-		Feedback c = new Feedback(3, null, 4, null, null, null);
-		Feedback d = new Feedback(4, null, 4, null, null, null);
-		Feedback e = new Feedback(5, null, 4, null, null, null);
-		Feedback f = new Feedback(6, null, 4, null, null, null);
-		Feedback g = new Feedback(7, null, 4, null, null, null);
-		Feedback h = new Feedback(8, null, 4, null, null, null);
+		Feedback a = new Feedback(1l, null, 4, null, null, null);
+		Feedback b = new Feedback(2l, null, 4, null, null, null);
+		Feedback c = new Feedback(3l, null, 4, null, null, null);
+		Feedback d = new Feedback(4l, null, 4, null, null, null);
+		Feedback e = new Feedback(5l, null, 4, null, null, null);
+		Feedback f = new Feedback(6l, null, 4, null, null, null);
+		Feedback g = new Feedback(7l, null, 4, null, null, null);
+		Feedback h = new Feedback(8l, null, 4, null, null, null);
 		list.add(a);
 		list.add(b);
 		list.add(c);
@@ -486,6 +473,7 @@ public class JDBCTutorService implements TutorService {
 	@Override
 	public void addAvailability(Availability availability) throws BusinessException {
 		// TODO Auto-generated method stub
+		availability.setId(1l);
 		
 	}
 

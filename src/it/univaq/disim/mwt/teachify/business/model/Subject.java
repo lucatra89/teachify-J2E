@@ -1,14 +1,14 @@
 package it.univaq.disim.mwt.teachify.business.model;
 
 public class Subject implements java.io.Serializable {
-	private long id;
+	private Long id;
 	private String name;
 
 	public Subject() {
 		super();
 	}
 
-	public Subject(long id, String name) {
+	public Subject(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -19,11 +19,11 @@ public class Subject implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -35,9 +35,5 @@ public class Subject implements java.io.Serializable {
 		this.name = name;
 	}
 	
-	public boolean equals(Object object){
-			return (object == null) ?  false : ((Subject)object).id == this.id;
-	
-	}
 
 }

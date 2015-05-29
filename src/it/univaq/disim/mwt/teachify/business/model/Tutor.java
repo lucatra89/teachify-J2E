@@ -24,9 +24,6 @@ public class Tutor extends User implements java.io.Serializable {
 	
 	private long distance;
 	
-	private Set<Feedback> feedbacks;///-----
-	
-	private Set<Request> requests;///-----
 
 	
 	public Location getLocation() {
@@ -96,19 +93,4 @@ public class Tutor extends User implements java.io.Serializable {
 		this.availabilities = availabilities;
 	}
 
-	public Set<Request> getRequests() {
-		return requests;
-	}
-
-	public void setRequests(Set<Request> requests) {
-		this.requests = requests;
-	}
-
-	public Set<Feedback> getFeedbacks() {
-		return feedbacks;
-	}
-
-	public void setFeedbacks(Set<Feedback> feedbacks) {
-		this.feedbacks = feedbacks;
-	}
 }

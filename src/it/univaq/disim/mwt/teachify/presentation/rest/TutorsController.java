@@ -267,7 +267,7 @@ public class TutorsController {
 		
 		Availability availability = requestEntity.getBody();
 		URI uri = requestEntity.getUrl();
-		
+		logger.info(availability);
 		availability.setTutor(tutor);
 		
 		return addAvailabilityImpl(uri , availability);

@@ -25,7 +25,7 @@ public class User implements java.io.Serializable {
 		this.groups = groups;
 	}
 
-	public User(long id, String email, String password, String name, String surname, Set<Group> groups) {
+	public User(Long id, String email, String password, String name, String surname, Set<Group> groups) {
 		super();
 		this.id = id;
 		this.email = email;
