@@ -18,8 +18,11 @@ define(['app', 'lang'], function (app, lang) {
 				$location.url(contextPath +'/');
 			};
 			
+			debugger;
+			document.getElementById("signup").innerHTML = lang.signup;
+			document.getElementById("signin").innerHTML = lang.signin;
+			document.getElementById("teachnow").innerHTML = lang.teachnow;
+			document.getElementById("teachnow").style.visibility = "visible";
 			
-			$scope.lang = lang;
-
 	}]);
 });

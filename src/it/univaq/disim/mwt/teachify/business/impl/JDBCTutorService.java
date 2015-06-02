@@ -30,7 +30,6 @@ import it.univaq.disim.mwt.teachify.business.model.Availability;
 import it.univaq.disim.mwt.teachify.business.model.Contact;
 import it.univaq.disim.mwt.teachify.business.model.Day;
 import it.univaq.disim.mwt.teachify.business.model.Feedback;
-import it.univaq.disim.mwt.teachify.business.model.Group;
 import it.univaq.disim.mwt.teachify.business.model.Hour;
 import it.univaq.disim.mwt.teachify.business.model.Lesson;
 import it.univaq.disim.mwt.teachify.business.model.Location;
@@ -41,6 +40,7 @@ import it.univaq.disim.mwt.teachify.business.model.Subject;
 import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.business.model.TypeOfEducation;
 import it.univaq.disim.mwt.teachify.business.model.User;
+
 @Service
 public class JDBCTutorService implements TutorService {
 	@Value("#{cfgproperties.imagesPath}")

@@ -21,13 +21,13 @@
 				
 				<security:authorize access="hasRole('tutor')">
 					<li>
-						<button type="button" class="btn btn-primary btn-dashboard" ng-click="goToDashboardTutor()">Dashboard Tutor</button>
+						<button type="button" class="btn btn-primary btn-dashboard" ng-click="goToDashboardTutor()">Tutor Dashboard</button>
 					</li>
 				</security:authorize> 
 				
 				<security:authorize access="hasRole('student')">
 					<li>
-						<button type="button" class="btn btn-info btn-dashboard" ng-click="goToDashboardStudent()">Dashboard {{lang.student}}</button>
+						<button type="button" class="btn btn-info btn-dashboard" ng-click="goToDashboardStudent()">Student Dashboard</button>
 					</li>
 				</security:authorize>
 				

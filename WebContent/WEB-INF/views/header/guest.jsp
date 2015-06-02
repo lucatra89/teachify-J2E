@@ -11,10 +11,10 @@
 
 	<div class="col-md-6 nav-teachify">
 		<ul class="nav navbar-nav navbar-right navbar-teachify">
-			<li><a ng-click="goToRegister()">{{lang.signup}}</a></li>
-			<li><a ng-click="goToLogin()">{{lang.signin}}</a></li>
+			<li><a id="signup" ng-click="goToRegister()"></a></li>
+			<li><a id="signin" ng-click="goToLogin()"></a></li>
 			<li>
-				<button type="button" class="btn btn-success" ng-click="goToRegisterTutor()">{{lang.teachnow}}</button>
+				<button style="visibility:hidden;" id="teachnow" type="button" class="btn btn-success" ng-click="goToRegisterTutor()"></button>
 			</li>
 		</ul>
 	</div>

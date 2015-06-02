@@ -1,6 +1,5 @@
 package it.univaq.disim.mwt.teachify.business.impl;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,7 +18,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import javax.imageio.ImageIO;
 import javax.sql.DataSource;
 
 import it.univaq.disim.mwt.teachify.business.BusinessException;
@@ -27,11 +25,9 @@ import it.univaq.disim.mwt.teachify.business.UserService;
 import it.univaq.disim.mwt.teachify.business.model.Group;
 import it.univaq.disim.mwt.teachify.business.model.User;
 
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Service;
 
 @Service
