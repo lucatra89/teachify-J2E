@@ -10,7 +10,7 @@ import it.univaq.disim.mwt.teachify.business.UserService;
 import it.univaq.disim.mwt.teachify.business.model.User;
 import it.univaq.disim.mwt.teachify.ejb.ManagerException;
 import it.univaq.disim.mwt.teachify.ejb.UserManagerRemote;
-//@Service
+@Service
 public class RemoteUserService implements UserService {
 	
 	@Autowired
@@ -28,7 +28,8 @@ public class RemoteUserService implements UserService {
 	@Override
 	public void createUser(User user) throws BusinessException {
 		try {
-			userManager.createUser(user);
+			Long id = userManager.createUser(user);
+			user.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -46,7 +47,7 @@ public class RemoteUserService implements UserService {
 	}
 
 	@Override
-	public User findUserById(long id) throws BusinessException {
+	public User findUserById(Long id) throws BusinessException {
 		try {
 			return userManager.findUserById(id);
 		} catch (ManagerException e) {
@@ -57,7 +58,8 @@ public class RemoteUserService implements UserService {
 	@Override
 	public void createAdmin(User user) throws BusinessException {
 		try {
-			userManager.createAdmin(user);
+			Long id = userManager.createAdmin(user);
+			user.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -75,9 +77,9 @@ public class RemoteUserService implements UserService {
 	}
 
 	@Override
-	public List<User> findAll() throws BusinessException {
+	public List<User> findAllAdmin() throws BusinessException {
 		try {
-			return userManager.findAll();
+			return userManager.findAllAdmin();
 		} catch (Exception e) {
 			throw new BusinessException(e);
 		}

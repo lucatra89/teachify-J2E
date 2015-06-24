@@ -19,14 +19,15 @@ import it.univaq.disim.mwt.teachify.business.model.User;
 import it.univaq.disim.mwt.teachify.ejb.ManagerException;
 import it.univaq.disim.mwt.teachify.ejb.TutorManagerRemote;
 
-//@Service
+@Service
 public class RemoteTutorService implements TutorService {
 	@Autowired
 	private TutorManagerRemote tutorManager;
 	@Override
 	public void createTutor(Tutor tutor) throws BusinessException {
 		try {
-			tutorManager.createTutor(tutor);
+			Long id = tutorManager.createTutor(tutor);
+			tutor.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -83,7 +84,7 @@ public class RemoteTutorService implements TutorService {
 	}
 
 	@Override
-	public Tutor findTutorByPk(long id) throws BusinessException {
+	public Tutor findTutorByPk(Long id) throws BusinessException {
 		try {
 			return tutorManager.findTutorByPk(id);
 		} catch (ManagerException e) {
@@ -94,7 +95,8 @@ public class RemoteTutorService implements TutorService {
 	@Override
 	public void createFeedback(Feedback feedback) throws BusinessException {
 		try {
-			tutorManager.createFeedback(feedback);
+			Long id =tutorManager.createFeedback(feedback);
+			feedback.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -102,9 +104,9 @@ public class RemoteTutorService implements TutorService {
 	}
 
 	@Override
-	public List<Feedback> findAllFeedback(Tutor tutor) throws BusinessException {
+	public List<Long> findAllFeedbackPK(Tutor tutor) throws BusinessException {
 		try {
-			return tutorManager.findAllFeedback(tutor);
+			return tutorManager.findAllFeedbackId(tutor);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -113,7 +115,8 @@ public class RemoteTutorService implements TutorService {
 	@Override
 	public void createRequest(Request request) throws BusinessException {
 		try {
-			tutorManager.createRequest(request);
+			Long id = tutorManager.createRequest(request);
+			request.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -158,9 +161,10 @@ public class RemoteTutorService implements TutorService {
 	}
 
 	@Override
-	public void addLesson(Lesson lesson) throws BusinessException {
+	public void createLesson(Lesson lesson) throws BusinessException {
 		try {
-			tutorManager.addLesson(lesson);
+			Long id =tutorManager.createLesson(lesson);
+			lesson.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -178,9 +182,10 @@ public class RemoteTutorService implements TutorService {
 	}
 
 	@Override
-	public void addAvailability(Availability availability) throws BusinessException {
+	public void createAvailability(Availability availability) throws BusinessException {
 		try {
-			tutorManager.addAvailability(availability);
+			Long id =tutorManager.createAvailability(availability);
+			availability.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -208,7 +213,7 @@ public class RemoteTutorService implements TutorService {
 	}
 
 	@Override
-	public Feedback findFeedbackById(long id) throws BusinessException {
+	public Feedback findFeedbackById(Long id) throws BusinessException {
 		try {
 			return tutorManager.findFeedbackById(id);
 		} catch (ManagerException e) {

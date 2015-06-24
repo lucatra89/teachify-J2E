@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface EducationService {
 	
-	List<Subject> findAllSubjects() throws BusinessException;
+	List<Subject> findAllSubjects() throws BusinessException;//
 	
 	void createSubject(Subject subject) throws BusinessException;
 

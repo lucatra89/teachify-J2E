@@ -19,12 +19,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user= service.authenticate(username);
-					
 		if(user== null){
 			throw new UsernameNotFoundException("");
-		}
-		for(Group g : user.getGroups()){
-			logger.info(g.getName());
 		}
 
 		

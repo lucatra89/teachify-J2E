@@ -101,6 +101,7 @@ public class RegisterController {
 		tutor.setPassword(user.getPassword());
 		tutor.setName(user.getName());
 		tutor.setSurname(user.getSurname());
+		tutor.setGroups(user.getGroups());
 
 		try{
 			tutorService.upgradeToTutor(tutor);

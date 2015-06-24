@@ -1,6 +1,8 @@
 package it.univaq.disim.mwt.teachify.presentation.rest;
 
 import java.net.URI;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import it.univaq.disim.mwt.teachify.business.BusinessException;
@@ -11,6 +13,7 @@ import it.univaq.disim.mwt.teachify.business.model.StatusRequest;
 import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.business.model.User;
 import it.univaq.disim.mwt.teachify.common.spring.Utility;
+import it.univaq.disim.mwt.teachify.presentation.rest.model.RequestResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,21 +41,30 @@ public class RequestsController {
 	
 	private static Logger logger = Logger.getLogger(RequestsController.class);
 	
+	private Collection<RequestResponse> buildCollection( Collection<Request> requests){
+		
+		Collection<RequestResponse> results = new HashSet<RequestResponse>();
+		for (Request request : requests) {
+			results.add(new RequestResponse(request));
+		}
+		return results;
+		
+	}
+	
 	@RequestMapping(method=RequestMethod.GET, params="user", produces= MediaType.APPLICATION_JSON_VALUE)
-    public List<Request> findUserRequests(@RequestParam("user") Long userId) {
+    public Collection<RequestResponse> findUserRequests(@RequestParam("user") Long userId) {
 		User user= new User();
 		user.setId(userId);
-		return service.findRequestsByUser(user);
+		Collection<Request> requests = service.findRequestsByUser(user);
+		return buildCollection(requests);
 	}
     
 	@RequestMapping(method=RequestMethod.GET, params={"tutor"},  produces= MediaType.APPLICATION_JSON_VALUE)
-	public List<Request> findTutorWaitingRequests(@RequestParam("tutor") Long tutorId ) {
-			logger.info("Request received...");
+	public Collection<RequestResponse> findTutorWaitingRequests(@RequestParam("tutor") Long tutorId ) {
 			Tutor tutor = new Tutor();
 			tutor.setId(tutorId);
-			List<Request> list = service.findWaitingRequestsByTutor(tutor);
-			logger.info("Sending response...");
-			return list;
+			List<Request> requests = service.findWaitingRequestsByTutor(tutor);
+			return buildCollection(requests);
 	}
 	
 	
@@ -60,6 +72,7 @@ public class RequestsController {
 	public ResponseEntity<String> create(RequestEntity<Request> requestEntity) {
 		Request request = requestEntity.getBody();
 		User user = Utility.getUser();
+		request.setStatus(StatusRequest.Waiting);
 		request.setUser(user);
 		
 		service.createRequest(request);

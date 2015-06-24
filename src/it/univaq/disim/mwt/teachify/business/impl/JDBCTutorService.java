@@ -41,7 +41,7 @@ import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.business.model.TypeOfEducation;
 import it.univaq.disim.mwt.teachify.business.model.User;
 
-@Service
+//@Service
 public class JDBCTutorService implements TutorService {
 	@Value("#{cfgproperties.imagesPath}")
 	private String imagesPath;
@@ -203,7 +203,7 @@ public class JDBCTutorService implements TutorService {
 	}
 
 	@Override
-	public Tutor findTutorByPk(long id) {
+	public Tutor findTutorByPk(Long id) {
 
 		Connection con = null;
 		PreparedStatement st = null;
@@ -233,10 +233,10 @@ public class JDBCTutorService implements TutorService {
 				
 				
 				Set<Lesson> lessons = new HashSet<Lesson>();
-				lessons.add(new Lesson(1l, new Subject(1l, "Matematica"), new TypeOfEducation(2l, "Medie"),null));
-				lessons.add(new Lesson(2l ,new Subject(1l, "Matematica"), new TypeOfEducation(3l, "Superiori"), null));
-				lessons.add(new Lesson(3l , new Subject(2l, "Fisica"), new TypeOfEducation(3l, "Superiori"),  null));
-				lessons.add(new Lesson(4l ,new Subject(2l, "Fisica"), new TypeOfEducation(21l, "Università"),  null));
+//				lessons.add(new Lesson(1l, new Subject(1l, "Matematica"), new TypeOfEducation(2l, "Medie"),null));
+//				lessons.add(new Lesson(2l ,new Subject(1l, "Matematica"), new TypeOfEducation(3l, "Superiori"), null));
+//				lessons.add(new Lesson(3l , new Subject(2l, "Fisica"), new TypeOfEducation(3l, "Superiori"),  null));
+//				lessons.add(new Lesson(4l ,new Subject(2l, "Fisica"), new TypeOfEducation(21l, "Università"),  null));
 				
 				Set<Availability> availabilities = new HashSet<Availability>();
 				availabilities.add(new Availability(Day.Monday, new Hour(8), new Hour(12)));
@@ -316,24 +316,16 @@ public class JDBCTutorService implements TutorService {
 	}
 
 	@Override
-	public List<Feedback> findAllFeedback(Tutor tutor) {
-		List<Feedback> list = new ArrayList<Feedback>();
-		Feedback a = new Feedback(1l, null, 4, null, null, null);
-		Feedback b = new Feedback(2l, null, 4, null, null, null);
-		Feedback c = new Feedback(3l, null, 4, null, null, null);
-		Feedback d = new Feedback(4l, null, 4, null, null, null);
-		Feedback e = new Feedback(5l, null, 4, null, null, null);
-		Feedback f = new Feedback(6l, null, 4, null, null, null);
-		Feedback g = new Feedback(7l, null, 4, null, null, null);
-		Feedback h = new Feedback(8l, null, 4, null, null, null);
-		list.add(a);
-		list.add(b);
-		list.add(c);
-		list.add(d);
-		list.add(e);
-		list.add(f);
-		list.add(g);
-		list.add(h);
+	public List<Long> findAllFeedbackPK(Tutor tutor) {
+		List<Long> list = new ArrayList<Long>();
+		list.add(1l);
+		list.add(2l);
+		list.add(3l);
+		list.add(4l);
+		list.add(5l);
+		list.add(6l);
+		list.add(7l);
+		list.add(8l);
 		
 		return list;
 	}
@@ -360,9 +352,9 @@ public class JDBCTutorService implements TutorService {
 		b.setTutor(tutor);
 		c.setTutor(tutor);
 		
-		a.setUser(findTutorByPk(1));
-		b.setUser(findTutorByPk(2));
-		c.setUser(findTutorByPk(3));
+		a.setUser(findTutorByPk(1l));
+		b.setUser(findTutorByPk(2l));
+		c.setUser(findTutorByPk(3l));
 		
 		a.setDescription("nde bell");
 		b.setDescription("voccapè");
@@ -402,10 +394,10 @@ public class JDBCTutorService implements TutorService {
 		c.setUser(user);
 		d.setUser(user);
 		
-		a.setTutor(findTutorByPk(1));
-		b.setTutor(findTutorByPk(2));
-		c.setTutor(findTutorByPk(3));
-		d.setTutor(findTutorByPk(3));
+		a.setTutor(findTutorByPk(1l));
+		b.setTutor(findTutorByPk(2l));
+		c.setTutor(findTutorByPk(3l));
+		d.setTutor(findTutorByPk(3l));
 		
 		a.setDescription("nde bell");
 		b.setDescription("voccapè");
@@ -459,7 +451,7 @@ public class JDBCTutorService implements TutorService {
 	}
 
 	@Override
-	public void addLesson(Lesson lesson) throws BusinessException {
+	public void createLesson(Lesson lesson) throws BusinessException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -471,7 +463,7 @@ public class JDBCTutorService implements TutorService {
 	}
 
 	@Override
-	public void addAvailability(Availability availability) throws BusinessException {
+	public void createAvailability(Availability availability) throws BusinessException {
 		// TODO Auto-generated method stub
 		availability.setId(1l);
 		
@@ -493,10 +485,10 @@ public class JDBCTutorService implements TutorService {
 	}
 
 	@Override
-	public Feedback findFeedbackById(long id) throws BusinessException {
+	public Feedback findFeedbackById(Long id) throws BusinessException {
 		Feedback feedback = new Feedback();
 		feedback.setCreatedAt(new Date());
-		feedback.setUser(findTutorByPk(2)); 
+		feedback.setUser(findTutorByPk(2l)); 
 		feedback.setRating(4);
 		feedback.setDescription("ccaf cafgcdgafd fgacdfcagdcaf dcfgacd affcdgfac fdca gfc df afdcfga gcacdag fcdafc");
 		return feedback;

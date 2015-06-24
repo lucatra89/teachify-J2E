@@ -52,9 +52,9 @@ define(function (require) {
 					return $q(function (resolve , reject) {
 						$.ajax({
 							url :url + '?tutor=' + tutor.id + "&status=Waiting",
-							type: 'GET',
+							type: 'GET'
 						})
-						.done(function(requests) {
+						.done(function(requests){
 							console.log("Response received...");
 							resolve({requests : requests});
 						});

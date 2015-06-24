@@ -1,10 +1,9 @@
 package it.univaq.disim.mwt.teachify.presentation.webservice.util;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Set;
-
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -124,7 +123,7 @@ public class Converter {
 		return tTutor;
 	}
 	
-	private static void addLessons(TTutor tTutor, Set<Lesson> lessons) {
+	private static void addLessons(TTutor tTutor, Collection<Lesson> lessons) {
 		if(lessons == null){
 			return;
 		}
@@ -157,7 +156,7 @@ public class Converter {
 		return tSubject;
 	}
 
-	private static void addAvailabilities(TTutor tTutor , Set<Availability> availabilities){
+	private static void addAvailabilities(TTutor tTutor , Collection<Availability> availabilities){
 		if(availabilities == null){
 			return;
 		}

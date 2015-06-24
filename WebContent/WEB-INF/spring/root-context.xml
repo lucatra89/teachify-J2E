@@ -13,14 +13,13 @@
     <util:properties id="ejbproperties" location="classpath:ejb.properties"/> 
     
     	<!-- Scans for application @Component and @Service to deploy -->
- 	
- 	
  	<context:component-scan base-package="it.univaq.disim.mwt.teachify.business.impl"/>	 
-	
  	
  	
 	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/teachifydb"/>
-	<jee:jndi-lookup id="educationManager" environment-ref="ejbproperties" jndi-name="java:global/teachify-ear/teachify-ejb/EducationManager"/>
 	<jee:jndi-lookup id="userManager" environment-ref="ejbproperties" jndi-name="java:global/teachify-ear/teachify-ejb/UserManager"/>
+	<jee:jndi-lookup id="educationManager" environment-ref="ejbproperties" jndi-name="java:global/teachify-ear/teachify-ejb/EducationManager"/>
 	<jee:jndi-lookup id="tutorManager" environment-ref="ejbproperties" jndi-name="java:global/teachify-ear/teachify-ejb/TutorManager"/>
+
+	
 </beans>

@@ -30,7 +30,7 @@ public class AdminsController {
 	
 	@RequestMapping (method = RequestMethod.GET, produces= "application/json")
 	public @ResponseBody List<User> findAll () {
-		return service.findAll();
+		return service.findAllAdmin();
 	}
 	
 	@RequestMapping (method = RequestMethod.POST , consumes="application/json", produces="text/plain")

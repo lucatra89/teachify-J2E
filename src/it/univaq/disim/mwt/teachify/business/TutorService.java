@@ -23,11 +23,11 @@ public interface TutorService {
 	
 	public List<TutorInfo> searchTutors(RequestTutors request) throws BusinessException;
 
-	public Tutor findTutorByPk(long id) throws BusinessException;
+	public Tutor findTutorByPk(Long id) throws BusinessException;
 
 	public void createFeedback(Feedback feedback) throws BusinessException;
 
-	public List<Feedback> findAllFeedback(Tutor tutor) throws BusinessException;
+	public List<Long> findAllFeedbackPK(Tutor tutor) throws BusinessException;
 
 	public void createRequest(Request request) throws BusinessException;
 
@@ -40,16 +40,16 @@ public interface TutorService {
 	public StatusRequest statusOfRequest(User user, Tutor tutor) throws BusinessException;
 
 
-	public void addLesson(Lesson lesson) throws BusinessException;
+	public void createLesson(Lesson lesson) throws BusinessException;
 
 	public void deleteLesson(Lesson lesson) throws BusinessException;
 
-	public void addAvailability(Availability availability) throws BusinessException;
+	public void createAvailability(Availability availability) throws BusinessException;
 
 	public void deleteAvailability(Availability availability) throws BusinessException;
 
 	public void updateTutorContact(Tutor tutor) throws BusinessException;
 
-	public Feedback findFeedbackById(long id) throws BusinessException;
+	public Feedback findFeedbackById(Long id) throws BusinessException;
 
 }

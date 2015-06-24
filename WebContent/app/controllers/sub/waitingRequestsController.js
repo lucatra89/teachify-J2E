@@ -20,6 +20,7 @@ define(function ( require ) {
 		
 				
 		function init() {
+			debugger;
 			console.log("Sending...");
 			requestQFactory.findWaiting(tutor)
 			.then(function(data) {

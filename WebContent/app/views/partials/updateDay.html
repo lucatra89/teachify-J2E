@@ -19,13 +19,13 @@
 				<div class=" col-md-6 form-group">
 					<label>{{lang.from}}</label>
 					<select name="from" class="form-control">
-						<option value="{{hour.id}}" ng-repeat="hour in hours">{{hour.value}}</option>
+						<option value="{{hour.id}}" ng-repeat="hour in hours | orderBy:'value'">{{hour.value}}</option>
 					</select>
 				</div>
 				<div class=" col-md-6 form-group">
 					<label>{{lang.to}}</label>
 					<select name="to" class="form-control">
-						<option value="{{hour.id}}" ng-repeat="hour in hours">{{hour.value}}</option>
+						<option value="{{hour.id}}" ng-repeat="hour in hours | orderBy:'value'">{{hour.value}}</option>
 					</select>
 				</div>
 				<div class="col-md-12 form-group">

@@ -30,7 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class JDBCUserService implements UserService {
 	
 	@Value("#{cfgproperties.imagesPath}")
@@ -221,7 +221,7 @@ public class JDBCUserService implements UserService {
 
 
 	@Override
-	public User findUserById(long id) throws BusinessException {
+	public User findUserById(Long id) throws BusinessException {
 		Connection con = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -274,7 +274,7 @@ public class JDBCUserService implements UserService {
 	}
 	
 	@Override
-	public List<User> findAll() throws BusinessException {
+	public List<User> findAllAdmin() throws BusinessException {
 		List<User> users = new ArrayList<User>();
 		User cici = new User(1l,"cici@gino.com", null, null, null, null);
 		User coco = new User(2l,"coco@gino.com", null, null, null, null);

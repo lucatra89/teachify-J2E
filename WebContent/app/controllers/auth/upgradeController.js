@@ -2,7 +2,8 @@ define(function (require) {
 	
 	var app = require('app'),
 		$ =require('jquery'),
-		_ = require('underscore');
+		_ = require('underscore'),
+		lang = require('lang');
 	
 	require('services/validateForm');
 	
@@ -37,7 +38,7 @@ define(function (require) {
 							
 							$('[name="location.latitude"]').val(lat);
 							$('[name="location.longitude"]').val(lon);
-							
+							$el.find("#saved").text(lang.saved);
 			    			$el.prependTo(".modal-body"); 
 			    			
 						}
@@ -50,7 +51,7 @@ define(function (require) {
 		validateForm();
 		
 		    	
-		
+		$scope.lang = lang;
 		_.extend($scope , handlers);
 		    	
 	}]);

@@ -23,7 +23,6 @@ define(function ( require ) {
     	
     	$scope.modalUpdateSubject = partialsPath + 'updateSubject.html';
     	$scope.modalAddSubject = partialsPath + 'addSubject.html';
-    	$scope.modalAddDay = partialsPath + 'addDay.html';
     	$scope.modalUpdateDay = partialsPath + 'updateDay.html';
     	$scope.modalFeedback = partialsPath + 'allFeedback.html';
     	$scope.waitingsRequests = partialsPath + 'waitingsRequests.html';
@@ -32,8 +31,10 @@ define(function ( require ) {
     	
     	//---------Load tutor info
     	function loadFeedback(uri) {
+    		console.log(uri);
 			$http.get(uri)
 			.success(function(feedback) {
+				debugger;
 				utilities.formatFeedback(feedback);
 				feedbacks.push(feedback);
 			});
@@ -57,7 +58,7 @@ define(function ( require ) {
     		findTutor();
 			tutorQFactory.findFeedbackResources(tutor)
 			.then(function(resources) {
-				for (var i = 0; i < 3; i++) {
+				for (var i = 0; i < 3 && i < resources.length; i++) {
 					loadFeedback(resources[i])
 				}
 				$scope.feedbackResources = resources.slice(3,resources.length);
@@ -94,7 +95,7 @@ define(function ( require ) {
     	
     	
     	//Modal change position
-    	
+		debugger;
     	
     	$scope.savePosition = function() {
 	    	var query = $('[name="queryLocation" ]').val(),
@@ -114,11 +115,14 @@ define(function ( require ) {
 					$el = $($("#alertSuccess").html());
 					
 					$el.find('#location_modal').text(data[0].display_name);
+					$el.find('#saved').text(lang.saved);
+					$el.find('#saved').after(lang.confirmPosition)
 
 					tutor.location.latitude = lat;
 					tutor.location.longitude = lon;
 					tutor.location.name = data[0].display_name;
 					utilities.refreshScope();
+
 					
 					tutorQFactory.updateTutorLocation(tutor)
 					.then(function() {

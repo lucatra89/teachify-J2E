@@ -13,7 +13,7 @@
 	<div class="col-md-6 nav-teachify">
 		<ul class="nav navbar-nav navbar-right navbar-teachify">
 
-				<security:authorize access="hasRole('student') && !hasRole('tutor')" >
+				<security:authorize access="!hasRole('tutor')" >
 					<li>
 						<button type="button" class="btn btn-success btn-dashboard" ng-click="goToUpgrade()">Diventa Tutor</button>
 					</li>
@@ -25,11 +25,9 @@
 					</li>
 				</security:authorize> 
 				
-				<security:authorize access="hasRole('student')">
 					<li>
 						<button type="button" class="btn btn-info btn-dashboard" ng-click="goToDashboardStudent()">Student Dashboard</button>
 					</li>
-				</security:authorize>
 				
 				<security:authorize access="hasRole('admin')">
 					<li>

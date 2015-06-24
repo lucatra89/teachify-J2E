@@ -14,6 +14,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,7 +50,7 @@ public class TypesOfEducationController {
 	
 	
 	@RequestMapping (value="/{id:[0-9]+}" , method = RequestMethod.PUT , consumes="application/json")
-	public ResponseEntity<Void> update(TypeOfEducation typeOfEducation) {
+	public ResponseEntity<Void> update(@RequestBody TypeOfEducation typeOfEducation) {
 		
 		service.updateTypeOfEducation(typeOfEducation);
 	    	    	    

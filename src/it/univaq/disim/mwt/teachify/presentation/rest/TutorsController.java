@@ -22,7 +22,9 @@ import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.business.model.User;
 import it.univaq.disim.mwt.teachify.common.spring.Utility;
 import it.univaq.disim.mwt.teachify.presentation.VerifyUser;
+import it.univaq.disim.mwt.teachify.presentation.rest.model.FeedbackResponse;
 import it.univaq.disim.mwt.teachify.presentation.rest.model.TutorInfoResponse;
+import it.univaq.disim.mwt.teachify.presentation.rest.model.TutorResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,14 +64,14 @@ public class TutorsController {
 	}
 	
 	private List<String> findFeedbackImpl(String uriRoot , Tutor tutor) {
-		List<Feedback> list = service.findAllFeedback(tutor);
+		List<Long> list = service.findAllFeedbackPK(tutor);
 		List<String> resources = new ArrayList<String>();
 		URI location;
 		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(uriRoot).path("/{id}");
 		
 		
-		for (Feedback feedback : list){
-			location = uriBuilder.buildAndExpand(feedback.getId()).toUri();
+		for (Long id : list){
+			location = uriBuilder.buildAndExpand(id).toUri();
 			resources.add(location.toString());
 		}
 		
@@ -99,7 +101,7 @@ public class TutorsController {
 	}
 	
 	private ResponseEntity<String> addLessonImpl(URI uri, Lesson lesson) {
-		service.addLesson(lesson);
+		service.createLesson(lesson);
 		
 		String id = Long.toString(lesson.getId());
 	    URI location = 	UriComponentsBuilder.fromUri(uri).path("/"+id).build().toUri();		
@@ -108,7 +110,7 @@ public class TutorsController {
 	}
 
 	private ResponseEntity<String> addAvailabilityImpl(URI uri, Availability availability) {
-		service.addAvailability(availability);
+		service.createAvailability(availability);
 		
 		String id = Long.toString(availability.getId());
 		URI location = UriComponentsBuilder.fromUri(uri).path("/" + id).build().toUri();
@@ -126,9 +128,9 @@ public class TutorsController {
 	}
 	
 	@RequestMapping(value = ("/{id:[0-9]+}"), method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public  Tutor findTutor(@PathVariable("id") long id) {
+	public  TutorResponse findTutor(@PathVariable("id") long id) {
 		
-		return service.findTutorByPk(id);
+		return new TutorResponse(service.findTutorByPk(id));
 	}
 
 	@RequestMapping(value = ("/{id:[0-9]+}/feedback"), method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
@@ -157,8 +159,8 @@ public class TutorsController {
 	}
 	
 	@RequestMapping(value = ("/{tutorId:[0-9]+}/feedback/{id:[0-9]+}"), method=RequestMethod.GET , produces=MediaType.APPLICATION_JSON_VALUE)
-	public Feedback findFeedbackById(@PathVariable("id")long id) {
-		return service.findFeedbackById(id);
+	public FeedbackResponse findFeedbackById(@PathVariable("id")long id) {
+		return new FeedbackResponse(service.findFeedbackById(id));
 	}
 	
 	

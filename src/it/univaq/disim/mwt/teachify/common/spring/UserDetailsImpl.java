@@ -25,6 +25,7 @@ public class UserDetailsImpl implements UserDetails{
 		
 		for(Group group : user.getGroups()){
 			authorities.add(new GrantedAuthorityImpl(group.getName()));
+			System.out.println(group.getName());
 		}
 		
 		return authorities;

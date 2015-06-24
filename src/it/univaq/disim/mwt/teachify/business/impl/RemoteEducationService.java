@@ -2,6 +2,7 @@ package it.univaq.disim.mwt.teachify.business.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import it.univaq.disim.mwt.teachify.business.model.TypeOfEducation;
 import it.univaq.disim.mwt.teachify.ejb.EducationManagerRemote;
 import it.univaq.disim.mwt.teachify.ejb.ManagerException;
 
-//@Service
+@Service
 public class RemoteEducationService implements EducationService {
 	
 	@Autowired
@@ -32,7 +33,8 @@ public class RemoteEducationService implements EducationService {
 	@Override
 	public void createSubject(Subject subject) throws BusinessException {
 		try {
-			educationManager.createSubject(subject);
+			Long id =educationManager.createSubject(subject);
+			subject.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -72,7 +74,8 @@ public class RemoteEducationService implements EducationService {
 	@Override
 	public void createTypeOfEducation(TypeOfEducation typeOfEducation) {
 		try {
-			educationManager.createTypeOfEducation(typeOfEducation);
+			Long id = educationManager.createTypeOfEducation(typeOfEducation);
+			typeOfEducation.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -111,7 +114,8 @@ public class RemoteEducationService implements EducationService {
 	@Override
 	public void createPrice(Price price) throws BusinessException {
 		try {
-			educationManager.createPrice(price);
+			Long id =educationManager.createPrice(price);
+			price.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}
@@ -140,7 +144,8 @@ public class RemoteEducationService implements EducationService {
 	@Override
 	public void createHour(Hour hour) throws BusinessException {
 		try {
-			educationManager.createHour(hour);
+			Long id =educationManager.createHour(hour);
+			hour.setId(id);
 		} catch (ManagerException e) {
 			throw new BusinessException(e);
 		}

@@ -10,8 +10,8 @@ define(function (require) {
 	require('services/requestQFactory');
 	require('controllers/sub/allFeedbackController');
 	
-    app.register.controller('tutorController', ['$scope','$location','$http','tutorQFactory','requestQFactory','$routeParams', 'utilities', 'partialsPath','$timeout','$window',
-		function ($scope, $location,$http, tutorQFactory,requestQFactory,$routeParams ,utilities, partialsPath, $timeout, $window) {
+    app.register.controller('tutorController', ['$scope','$location','$http','tutorQFactory','requestQFactory','$routeParams', 'utilities', 'partialsPath','$timeout','$window','$rootScope',
+		function ($scope, $location,$http, tutorQFactory,requestQFactory,$routeParams ,utilities, partialsPath, $timeout, $window, $rootScope) {
 
 			var feedback = $scope.feedback = {},
 				feedbacks = $scope.feedbacks = [],
@@ -22,9 +22,10 @@ define(function (require) {
 					addFeedback : function() {
 						feedback.rating = $(".active [type='radio']").val();
 						tutorQFactory.createFeedback(tutor , feedback)
-							.then(function(feedback) {
-								
-								tutor.feedbacks.push(feedback);
+							.then(function(id) {
+								feedback.id = id;
+								feedback.user = $rootScope.authUser;
+								feedbacks.push(feedback);
 								$('#modalFeedback').modal('hide');
 								utilities.refreshScope();
 								
@@ -74,7 +75,7 @@ define(function (require) {
     				
     				tutorQFactory.findFeedbackResources(tutor)
     				.then(function(resources) {
-    					for (var i = 0; i < 3; i++) {
+    					for (var i = 0; i < 3 && i < resources.length; i++) {
     						loadFeedback(resources[i])
 						}
 						$scope.feedbackResources = resources.slice(3,data.length);

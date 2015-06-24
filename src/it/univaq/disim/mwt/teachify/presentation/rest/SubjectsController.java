@@ -14,6 +14,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -52,8 +53,9 @@ public class SubjectsController {
 	}
 	
 	@RequestMapping (value="/{id:[0-9]+}" , method = RequestMethod.PUT , consumes="application/json")
-	public ResponseEntity<Void> update(Subject subject, @PathVariable("id")long id ) {
-		
+	public ResponseEntity<Void> update(@RequestBody Subject subject, @PathVariable("id")long id ) {
+		subject.setId(id);
+		System.out.println(subject.getName());
 		service.updateSubject(subject);
 	    	    	    
 	    return ResponseEntity.noContent().build();

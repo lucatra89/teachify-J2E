@@ -53,6 +53,7 @@ define(function (require) {
 								dataType: 'json'
 							})
 							.done(function (tutor) {
+								tutor.rating = tutor.rating.toFixed(1).replace(".0", "");
 								tutor.lessons = utilities.formatLessons(tutor.lessons);
 								tutor.availabilities = utilities.formatAvailabilities(tutor.availabilities);
 								resolve({tutor : tutor});

@@ -21,7 +21,7 @@ import it.univaq.disim.mwt.teachify.business.model.Price;
 import it.univaq.disim.mwt.teachify.business.model.Subject;
 import it.univaq.disim.mwt.teachify.business.model.TypeOfEducation;
 
-@Service
+//@Service
 public class JDBCEducationService implements EducationService {
 	@Autowired
 	private DataSource dataSource;

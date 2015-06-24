@@ -5,6 +5,7 @@ import it.univaq.disim.mwt.teachify.business.AuthException;
 import it.univaq.disim.mwt.teachify.business.UserService;
 import it.univaq.disim.mwt.teachify.business.model.User;
 import it.univaq.disim.mwt.teachify.common.spring.Utility;
+import it.univaq.disim.mwt.teachify.presentation.rest.model.UserResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,10 +27,10 @@ public class ProfileController {
 	UserService service;
 	
 	@RequestMapping(method=RequestMethod.GET , produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody User profile(){
+	public UserResponse profile(){
 
 		User user = service.findUserById(Utility.getUser().getId());
-		return user;
+		return new UserResponse(user);
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -38,6 +39,9 @@ public class ProfileController {
 		User current = Utility.getUser();
 		
 		user.setId(current.getId());
+		user.setEmail(current.getEmail());
+		user.setPassword(current.getPassword());
+		user.setGroups(current.getGroups());
 		
 		service.updateUser(user);
 				
