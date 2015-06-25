@@ -1,7 +1,6 @@
 package it.univaq.disim.mwt.teachify.common.spring;
 
 import it.univaq.disim.mwt.teachify.business.UserService;
-import it.univaq.disim.mwt.teachify.business.impl.JDBCUserService;
 import it.univaq.disim.mwt.teachify.business.model.Group;
 import it.univaq.disim.mwt.teachify.business.model.User;
 
@@ -15,7 +14,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired
 	private UserService service;
-	private static final Logger logger = Logger.getLogger(JDBCUserService.class);
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user= service.authenticate(username);

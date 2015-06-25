@@ -21,6 +21,7 @@ public class UserResponse extends User {
 	}
 	public UserResponse(User user ) {
 		this(user.getId(), user.getEmail(), user.getName(), user.getSurname());
+		this.setPhoto(user.getPhoto());
 	}
 	
 }

@@ -293,7 +293,7 @@ public class Converter {
 	}
 
 	public static TStatusRequest fromStatusRequest(StatusRequest status) {
-		return TStatusRequest.fromValue(status.name());
+		return (status == null) ? null :  TStatusRequest.fromValue(status.name());
 	}
 	public static StatusRequest toStatusRequest(TStatusRequest tStatus) {
 		return StatusRequest.valueOf(tStatus.value());

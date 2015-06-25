@@ -5,6 +5,9 @@
  */
 package it.univaq.disim.mwt.teachify.presentation.webservice;
 
+import java.util.Collection;
+import java.util.List;
+
 import it.univaq.disim.mwt.teachify.business.TutorService;
 import it.univaq.disim.mwt.teachify.business.model.Request;
 import it.univaq.disim.mwt.teachify.business.model.StatusRequest;
@@ -40,6 +43,13 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
         info.setCode(1);
         info.setMessage(e.getMessage());
         return new Error("Exception", info, e);
+    }
+    
+    private Error createError() {
+        TError info = new TError();
+        info.setCode(2);
+        info.setMessage("Richiesta inesistente");
+        return new Error("Exception", info);
     }
     
     public long createTutor(TTutor tTutor) throws Error {
@@ -124,7 +134,9 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
 
     public TRequestList findRequestsByUser(TUser tUser) throws Error {
     	try {
-    		return Converter.fromRequestList(service.findRequestsByUser(Converter.toUser(tUser)));
+    		List<Request> list = service.findRequestsByUser(Converter.toUser(tUser));
+
+    		return Converter.fromRequestList(list);
 		} catch (Exception e) {
     		throw createErrorFromException(e);
 		}
@@ -137,6 +149,9 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
 		} catch (Exception e) {
     		throw createErrorFromException(e);
 		}
+    	if(status == null){
+    		throw createError();
+    	}
     	
     	return Converter.fromStatusRequest(status);
     }

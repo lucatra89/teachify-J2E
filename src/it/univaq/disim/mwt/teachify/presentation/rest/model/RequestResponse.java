@@ -26,6 +26,7 @@ public class RequestResponse extends Request {
 		this.setDescription(request.getDescription());
 		this.setId(request.getId());
 		this.setStatus(request.getStatus());
+		System.out.println(request.getTutor());
 		this.setTutorResponse(new TutorResponse(request.getTutor()));
 		this.setUserResponse(new UserResponse(request.getUser()));
 	}

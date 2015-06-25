@@ -35,14 +35,13 @@ public class TutorResponse extends Tutor {
 	
 
 	public TutorResponse(Tutor tutor){
-		
 		super(tutor.getId());
 		this.setContact(tutor.getContact());
 		this.setEmail(tutor.getEmail());
 		this.setDescription(tutor.getDescription());
 		this.setRating(tutor.getRating());
 		this.setPrice(tutor.getPrice());
-		this.setPhoto(getPhoto());
+		this.setPhoto(tutor.getPhoto());
 		this.setLocation(tutor.getLocation());
 		this.setName(tutor.getName());
 		this.setSurname(tutor.getSurname());
