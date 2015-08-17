@@ -10,9 +10,7 @@ define(function (require) {
 	app.register.controller('registerTutorController',
     		['$scope','$location','$compile', 'partialsPath','contextPath','urlGeo', 'utilities','validateForm',
 		function ($scope, $location, $compile ,partialsPath,contextPath, urlGeo, utilities, validateForm) {
-			var form = document.forms[0], action = form.getAttribute('action'),
-			action = contextPath + action;
-			form.setAttribute("action", action);
+			var form = document.forms[0];
     		$scope.modal = partialsPath + 'insertPosition.html';
     	
     		var handlers = {
@@ -49,8 +47,9 @@ define(function (require) {
     				
     		};
     		
-    		validateForm();  	
+    		validateForm(form);  	
     		$scope.lang = lang;
+    		$scope.contextPath = contextPath;
     		_.extend($scope , handlers);
     		    	
 

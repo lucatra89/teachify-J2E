@@ -8,8 +8,8 @@ define( function ( require ) {
 	require('services/userQFactory');
 	
 
-    app.register.controller('profileController', ['$scope','userQFactory',
-		function ($scope, userQFactory) {
+    app.register.controller('profileController', ['$scope','userQFactory','$rootScope',
+		function ($scope, userQFactory, $rootScope) {
     	
 	    	function updateImg(file) {
     				var reader = new FileReader(),
@@ -52,7 +52,7 @@ define( function ( require ) {
 				debugger;
 				userQFactory.updateUser($scope.profile)
 					.then(function(data) {
-
+						$rootScope.authUser = $scope.profile;
 						window.sweetAlert("ok!", lang.saveSuccess, "success");
 					});
 			}

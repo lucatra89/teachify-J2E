@@ -7,7 +7,7 @@ define(function (require) {
 	
 	app.register.factory('validateForm',function() {
 		var valid = true,
-		$form = $("form");
+		$form;
 	
 		 function isEmpty() {
 			if(!this.value || this.value === ""){
@@ -43,7 +43,10 @@ define(function (require) {
 		
 		
 		
-		return function() { $form.submit(validate);};
+		return function(form) {
+			$form = $(form);
+			$form.submit(validate);
+		};
 		
 	});
 	

@@ -13,22 +13,15 @@
 	<div class="col-md-6 nav-teachify">
 		<ul class="nav navbar-nav navbar-right navbar-teachify">
 
-				<security:authorize access="!hasRole('tutor')" >
-					<li>
-						<button type="button" class="btn btn-success btn-dashboard" ng-click="goToUpgrade()">Diventa Tutor</button>
-					</li>
-				</security:authorize>
 				
 				<security:authorize access="hasRole('tutor')">
 					<li>
 						<button type="button" class="btn btn-primary btn-dashboard" ng-click="goToDashboardTutor()">Tutor Dashboard</button>
 					</li>
 				</security:authorize> 
-				
 					<li>
 						<button type="button" class="btn btn-info btn-dashboard" ng-click="goToDashboardStudent()">Student Dashboard</button>
 					</li>
-				
 				<security:authorize access="hasRole('admin')">
 					<li>
 						<button type="button" class="btn btn-danger btn-dashboard" ng-click="goToBackend()">Backend</button>

@@ -91,36 +91,7 @@ public class RegisterController {
 			return "redirect:/registertutor";
 		
 	}
-	
-	@RequestMapping(value="/upgrade" , method = RequestMethod.POST)
-	public String upgradeToTutor(@ModelAttribute Tutor tutor){
 		
-		User user = Utility.getUser();
-		tutor.setId(user.getId());
-		tutor.setEmail(user.getEmail());
-		tutor.setPassword(user.getPassword());
-		tutor.setName(user.getName());
-		tutor.setSurname(user.getSurname());
-		tutor.setGroups(user.getGroups());
-
-		try{
-			tutorService.upgradeToTutor(tutor);
-			
-		}catch(BusinessException e){
-			
-			return "redirect:/upgrade";
-		}
-		
-		
-		if(authenticate(tutor))
-			return "redirect:/dashboardtutor";
-		
-		else
-			return "redirect:/upgrade";
-				
-		
-	}
-	
 	
 
 }

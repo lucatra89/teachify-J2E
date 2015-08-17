@@ -5,17 +5,13 @@ import it.univaq.disim.mwt.teachify.business.AuthException;
 import it.univaq.disim.mwt.teachify.business.UserService;
 import it.univaq.disim.mwt.teachify.business.model.User;
 import it.univaq.disim.mwt.teachify.common.spring.Utility;
-import it.univaq.disim.mwt.teachify.presentation.rest.model.UserResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,10 +23,9 @@ public class ProfileController {
 	UserService service;
 	
 	@RequestMapping(method=RequestMethod.GET , produces=MediaType.APPLICATION_JSON_VALUE)
-	public UserResponse profile(){
+	public User profile(){
 
-		User user = service.findUserById(Utility.getUser().getId());
-		return new UserResponse(user);
+		return service.findUserById(Utility.getUser().getId());
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)

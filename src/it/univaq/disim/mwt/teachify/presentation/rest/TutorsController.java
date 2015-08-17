@@ -22,10 +22,7 @@ import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.business.model.User;
 import it.univaq.disim.mwt.teachify.common.spring.Utility;
 import it.univaq.disim.mwt.teachify.presentation.VerifyUser;
-import it.univaq.disim.mwt.teachify.presentation.rest.model.FeedbackResponse;
 import it.univaq.disim.mwt.teachify.presentation.rest.model.TutorInfoResponse;
-import it.univaq.disim.mwt.teachify.presentation.rest.model.TutorResponse;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -128,9 +125,9 @@ public class TutorsController {
 	}
 	
 	@RequestMapping(value = ("/{id:[0-9]+}"), method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public  TutorResponse findTutor(@PathVariable("id") long id) {
+	public  Tutor findTutor(@PathVariable("id") long id) {
 		
-		return new TutorResponse(service.findTutorByPk(id));
+		return service.findTutorByPk(id);
 	}
 
 	@RequestMapping(value = ("/{id:[0-9]+}/feedback"), method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
@@ -159,8 +156,8 @@ public class TutorsController {
 	}
 	
 	@RequestMapping(value = ("/{tutorId:[0-9]+}/feedback/{id:[0-9]+}"), method=RequestMethod.GET , produces=MediaType.APPLICATION_JSON_VALUE)
-	public FeedbackResponse findFeedbackById(@PathVariable("id")long id) {
-		return new FeedbackResponse(service.findFeedbackById(id));
+	public Feedback findFeedbackById(@PathVariable("id")long id) {
+		return service.findFeedbackById(id);
 	}
 	
 	

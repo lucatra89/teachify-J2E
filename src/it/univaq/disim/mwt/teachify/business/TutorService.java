@@ -16,8 +16,6 @@ public interface TutorService {
 	public void updateTutorDescription(Tutor tutor) throws BusinessException;
 
 	public void updateTutorLocation(Tutor tutor) throws BusinessException;
-
-	public void upgradeToTutor(Tutor tutor) throws BusinessException;
 	
 	public void updateTutorPrice(Tutor tutor) throws BusinessException;
 	

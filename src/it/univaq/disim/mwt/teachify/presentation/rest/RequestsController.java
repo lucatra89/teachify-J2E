@@ -13,9 +13,6 @@ import it.univaq.disim.mwt.teachify.business.model.StatusRequest;
 import it.univaq.disim.mwt.teachify.business.model.Tutor;
 import it.univaq.disim.mwt.teachify.business.model.User;
 import it.univaq.disim.mwt.teachify.common.spring.Utility;
-import it.univaq.disim.mwt.teachify.presentation.rest.model.RequestResponse;
-
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -39,32 +35,18 @@ public class RequestsController {
 	@Autowired
 	private TutorService service;
 	
-	private static Logger logger = Logger.getLogger(RequestsController.class);
-	
-	private Collection<RequestResponse> buildCollection( Collection<Request> requests){
-		
-		Collection<RequestResponse> results = new HashSet<RequestResponse>();
-		for (Request request : requests) {
-			results.add(new RequestResponse(request));
-		}
-		return results;
-		
-	}
-	
 	@RequestMapping(method=RequestMethod.GET, params="user", produces= MediaType.APPLICATION_JSON_VALUE)
-    public Collection<RequestResponse> findUserRequests(@RequestParam("user") Long userId) {
+    public Collection<Request> findUserRequests(@RequestParam("user") Long userId) {
 		User user= new User();
 		user.setId(userId);
-		Collection<Request> requests = service.findRequestsByUser(user);
-		return buildCollection(requests);
+		return service.findRequestsByUser(user);
 	}
     
 	@RequestMapping(method=RequestMethod.GET, params={"tutor"},  produces= MediaType.APPLICATION_JSON_VALUE)
-	public Collection<RequestResponse> findTutorWaitingRequests(@RequestParam("tutor") Long tutorId ) {
+	public Collection<Request> findTutorWaitingRequests(@RequestParam("tutor") Long tutorId ) {
 			Tutor tutor = new Tutor();
 			tutor.setId(tutorId);
-			List<Request> requests = service.findWaitingRequestsByTutor(tutor);
-			return buildCollection(requests);
+			return service.findWaitingRequestsByTutor(tutor);
 	}
 	
 	

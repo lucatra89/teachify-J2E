@@ -1,7 +1,0 @@
-<Context path="/teachify">
-    <Resource name="jdbc/teachifydb" scope="Unshareable" type="javax.sql.DataSource"
-              maxActive="100" maxIdle="30" maxWait="5000"
-              username="teachify" password="teachify" driverClassName="oracle.jdbc.OracleDriver"
-              url="jdbc:oracle:thin:@127.0.0.1:1521/orcl"/>
-         
-</Context>

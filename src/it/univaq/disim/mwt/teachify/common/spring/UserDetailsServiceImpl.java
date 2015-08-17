@@ -1,10 +1,8 @@
 package it.univaq.disim.mwt.teachify.common.spring;
 
 import it.univaq.disim.mwt.teachify.business.UserService;
-import it.univaq.disim.mwt.teachify.business.model.Group;
 import it.univaq.disim.mwt.teachify.business.model.User;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +19,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if(user== null){
 			throw new UsernameNotFoundException("");
 		}
-
 		
 		return new UserDetailsImpl(user);
 	}

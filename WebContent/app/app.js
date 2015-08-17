@@ -37,7 +37,6 @@ define(function ( require) {
                 .when(contextPath + '/search' , route.resolve('search'))
                 .when(contextPath + '/register', route.resolve('register', 'auth/'))
                 .when(contextPath + '/registertutor', route.resolve('registerTutor', 'auth/'))
-                .when(contextPath + '/upgrade', route.resolve('upgrade', 'auth/'))
                 .when(contextPath + '/login', route.resolve('login', 'auth/'))
                 .when(contextPath + '/profile', route.resolve('profile'))
                 .when(contextPath + '/tutor/:id', route.resolve('tutor'))

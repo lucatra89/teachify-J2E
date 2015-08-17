@@ -3,7 +3,9 @@ package it.univaq.disim.mwt.teachify.presentation.webservice.util;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
+
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -74,6 +76,7 @@ public class Converter {
 		return tutor;
 	}
 
+
 	public static Price toPrice(TPrice tPrice) {
 		if(tPrice == null){
 			return null;
@@ -112,6 +115,7 @@ public class Converter {
 		TTutor tTutor = new TTutor();
 		tTutor.setId(tutor.getId());
 		tTutor.setName(tutor.getName());
+		tTutor.setEmail(tutor.getEmail());
 		tTutor.setSurname(tutor.getSurname());
 		tTutor.setContact( fromContact(tutor.getContact()));
 		tTutor.setPrice(fromPrice(tutor.getPrice()));
@@ -283,6 +287,7 @@ public class Converter {
 		TTutorInfo tInfo = null;
 		
 		for(TutorInfo info : infos){
+			System.out.println(info.getId());
 			tInfo = new TTutorInfo();
 			tInfo.setDistance(info.getDistance());
 			tInfo.setId(info.getId());

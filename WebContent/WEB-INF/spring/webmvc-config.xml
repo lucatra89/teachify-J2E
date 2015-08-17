@@ -9,8 +9,15 @@
                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<mvc:annotation-driven />
-    <util:properties id="cfgproperties" location="classpath:cfg.properties"/>
+	<bean id="customObjectMapper" class="it.univaq.disim.mwt.teachify.common.jackson.CustomObjectMapper"></bean>
+	
+	<mvc:annotation-driven>
+	    <mvc:message-converters register-defaults="true">
+	         <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	             <property name="objectMapper" ref="customObjectMapper" />
+	         </bean>
+	    </mvc:message-converters>
+	</mvc:annotation-driven>
 
 	<!-- Handles HTTP GET requests  by efficiently serving  up static resources  -->
 	<mvc:resources mapping="/resources/**" location="/resources/"/>

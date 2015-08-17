@@ -2,7 +2,6 @@ package it.univaq.disim.mwt.teachify.presentation.rest;
 
 import it.univaq.disim.mwt.teachify.business.BusinessException;
 import it.univaq.disim.mwt.teachify.business.EducationService;
-import it.univaq.disim.mwt.teachify.business.model.Subject;
 import it.univaq.disim.mwt.teachify.business.model.TypeOfEducation;
 
 import java.net.URI;

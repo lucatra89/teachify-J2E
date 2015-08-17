@@ -5,9 +5,9 @@
  */
 package it.univaq.disim.mwt.teachify.presentation.webservice;
 
-import java.util.Collection;
 import java.util.List;
 
+import it.univaq.disim.mwt.teachify.business.TutorInfo;
 import it.univaq.disim.mwt.teachify.business.TutorService;
 import it.univaq.disim.mwt.teachify.business.model.Request;
 import it.univaq.disim.mwt.teachify.business.model.StatusRequest;
@@ -99,7 +99,11 @@ public class TeachifyWebService extends SpringBeanAutowiringSupport{
 
     public TTutorInfoList searchTutors(TRequestTutors requestTutors) throws Error {
         try {
-			return Converter.fromTutorInfoList(service.searchTutors(Converter.toRequestTutors(requestTutors)));
+        	List<TutorInfo> infos = service.searchTutors(Converter.toRequestTutors(requestTutors));
+        	for (TutorInfo tutorInfo : infos) {
+				System.out.println("DDDDDDDDAAAAAIIIIIIII " + tutorInfo.getId());
+			}
+			return Converter.fromTutorInfoList(infos);
 		} catch (Exception e) {
 			throw createErrorFromException(e);
 		}
